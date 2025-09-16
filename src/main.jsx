@@ -7,11 +7,18 @@ import '@fontsource/roboto/700.css';
 
 import './index.css'
 import App from './App.jsx'
+import { CssBaseline } from '@mui/material';
+import ThemeContextProvider from './context/ThemeContext.jsx';
 
 
 
 createRoot(document.getElementById('root')).render(
   
-    <App />
+    <>
+        <ThemeContextProvider>
+            
+            <App />    
+        </ThemeContextProvider>    
+    </>
   
 )
