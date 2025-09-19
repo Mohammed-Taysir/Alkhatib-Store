@@ -92,7 +92,7 @@ function SimpleListMenu() {
         bgcolor: '#2b3445',
 
       }}>
-        <Container maxWidth='xl'>
+        <Container maxWidth='lg'>
           <Stack direction='row' alignItems="center" py={1}>
             <Typography variant='body2' sx={{
               mr: 2,

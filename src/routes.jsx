@@ -7,6 +7,10 @@ import Cart from "./pages/cart/Cart";
 import Checkout from "./pages/checkout/Checkout";
 import Shop from "./pages/shop/Shop";
 import Product from "./pages/product/Product";
+import Contact from "./pages/contact/Contact";
+import Blog from "./pages/blog/Blog";
+import About from "./pages/about/About";
+import AuthLayout from "./layouts/AuthLayout";
 
 
 
@@ -19,14 +23,7 @@ const router = createBrowserRouter([
                 index:true,
                 element: <Home />
             },
-            {
-                path: '/login',
-                element: <Login />
-            }, 
-            {
-                path: '/register',
-                element: <Register />
-            },
+            
             {
                 path: '/cart',
                 element: <Cart />
@@ -42,6 +39,32 @@ const router = createBrowserRouter([
             {
                 path: '/product',
                 element: <Product />
+            },
+            {
+                path: '/contact',
+                element: <Contact />
+            },
+            {
+                path: '/blog',
+                element: <Blog />
+            },
+            {
+                path: '/about',
+                element: <About />
+            }
+        ]
+    },
+    {
+        path: '/auth',
+        element: <AuthLayout />,
+        children: [
+            {
+                index: true,
+                element: <Login />
+            },
+            {
+                path: '/auth/register',
+                element: <Register />
             }
         ]
     }
