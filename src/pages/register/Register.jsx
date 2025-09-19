@@ -21,8 +21,10 @@ function Register() {
 
   const onSubmit = async (data) => {
     try {
+      setIsLoading(true);
+
       const response = await axios.post('https://kashop1.runasp.net/api/Identity/Account/Register', data);
-      setIsLoading(true)
+      
       if (response.status === 200) {
         toast.success(`Your account has been created successfully.  
 Please check your email to confirm your registration.`, {
@@ -36,6 +38,7 @@ Please check your email to confirm your registration.`, {
           theme: "light",
           transition: Bounce,
         });
+        
         navigate('/auth/');
       }
     } catch (error) {
