@@ -1,12 +1,12 @@
 import axios from "axios";
 
 
-const token = localStorage.getITem('userToken');
+const token = localStorage.getItem('userToken');
 
 const AxiosUserInstance = axios.create({
     baseURL: 'https://kashop1.runasp.net/api',
     headers: {
-        Authorization: `Bearer ${userToken}`
+        Authorization: `Bearer ${token}`
     }
 });
 

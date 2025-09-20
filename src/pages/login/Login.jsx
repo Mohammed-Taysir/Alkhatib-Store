@@ -76,7 +76,7 @@ function Login() {
             <Button variant='contained' size='large' type='submit' disabled = {isLoading} >
               {isLoading? <CircularProgress />: 'Login'}
             </Button>
-            <Typography textAlign={'center'} fontSize='14px' color={theme.palette.neutral.main}>Forget password <Link component={RouterLink} to='/auth/'>reset password</Link></Typography>
+            <Typography textAlign={'center'} fontSize='14px' color={theme.palette.neutral.main}>Forget password <Link component={RouterLink} to='/auth/forget'>Forget password</Link></Typography>
 
           </Box>
 
