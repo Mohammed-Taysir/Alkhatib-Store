@@ -52,7 +52,7 @@ function MidBar() {
   return (
     <Box>
       <Container maxWidth = 'lg'>
-        <Stack direction={'row'} alignITems = 'center' justifyContent={'space-between'}>
+        <Stack direction={'row'} alignItems = 'center' justifyContent={'space-between'}>
           <Box component ='img' src = {logo} sx = {{width: 135}}>
           </Box>
 

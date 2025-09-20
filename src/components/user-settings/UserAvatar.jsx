@@ -2,20 +2,23 @@ import React from 'react'
 import AxiosUserInstance from '../../api/AxiosUserInstance'
 import { useQuery } from '@tanstack/react-query';
 import { Box, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
+import useFetch from '../../custom-hook/useFetch';
 
 function UserAvatar() {
     const theme = useTheme();
-    const fetchUser = async () => {
-        const response = await AxiosUserInstance.get('/Users/profile');
-        return response;
-    }
+
+    const {data: user} = useFetch('/Users/profile', 'user', true)
+    // const fetchUser = async () => {
+    //     const response = await AxiosUserInstance.get('/Users/profile');
+    //     return response;
+    // }
 
 
-    const {data: user} = useQuery({
-        queryKey: ['user'],
-        queryFn: fetchUser,
-        staleTime: 1000 * 60 * 5
-    })
+    // const {data: user} = useQuery({
+    //     queryKey: ['user'],
+    //     queryFn: fetchUser,
+    //     staleTime: 1000 * 60 * 5
+    // })
 
     console.log(user)
 

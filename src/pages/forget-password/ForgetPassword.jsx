@@ -32,11 +32,7 @@ function ForgetPassword() {
             if (response.status === 200)
                 navigate('/auth/reset')
         } catch (error) {
-            if (error.response) {
-                setServerError(error.response.message);
-            } else {
-                setServerError("UnExpected Error!");
-            }
+            setServerError(error.response?.data?.message || "UnExpected Error!");
         } finally {
             setIsLoading(false);
         }

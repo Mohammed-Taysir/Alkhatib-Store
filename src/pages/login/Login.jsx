@@ -36,11 +36,9 @@ function Login() {
         navigate('/');
       }
     } catch (error) {
-      if(error.response) {
-        setServerError(error.response.message);
-      }else {
-        setServerError("UnExpected Error!");
-      }
+        console.log(error)
+        setServerError(error.response?.data?.message || "UnExpected Error!");
+      
     } finally {
       setIsLoading(false);
     }

@@ -42,10 +42,8 @@ Please check your email to confirm your registration.`, {
         navigate('/auth/');
       }
     } catch (error) {
-      if (error.response)
-        setServerError(error.response.data.message);
-      else
-        setServerError("An un expected error")
+      
+      setServerError(error.response?.data?.message || "UnExpected Error!");
 
       toast.error(serverError, {
         position: "top-right",
