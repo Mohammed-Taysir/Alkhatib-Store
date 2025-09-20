@@ -39,13 +39,8 @@ const pages = [{
 }, {
   page: "About",
   path: '/about'
-}, {
-  page: 'login',
-  path: '/auth/'
-}, {
-  page: 'register',
-  path: '/auth/register'
-} , {
+} ,
+{
   page: 'blog',
   path: '/blog'
 }];

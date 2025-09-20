@@ -17,7 +17,9 @@ function UserAvatar() {
         staleTime: 1000 * 60 * 5
     })
 
-    const userFullName = user.data.fullName;
+    console.log(user)
+
+    const userFullName = user?.data.fullName;
 
     console.log(userFullName)
     return (
@@ -34,7 +36,7 @@ function UserAvatar() {
                 alignItems: 'center',
                 fontSize: '18px'
                 
-            }}>{userFullName[0].toUpperCase()}</Box>
+            }}>{userFullName?.at(0).toUpperCase()}</Box>
 
             {useMediaQuery('(min-width:1000px)') && <Typography color= {theme.palette.text.primary} textTransform={'capitalize'}>{userFullName}</Typography>}
         </Stack>

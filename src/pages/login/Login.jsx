@@ -1,12 +1,13 @@
 import { Box, Button, Card, CardContent, CardHeader, CircularProgress, Link, TextField, Typography, useTheme } from '@mui/material'
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import React, { useState } from 'react'
+import { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import axios from 'axios';
 import { Bounce, toast } from 'react-toastify';
 import LoginSchema from '../../validations/LoginSchema';
+import { LoginContext } from '../../context/LoginContext';
 
 function Login() {
   const theme = useTheme();
@@ -20,6 +21,8 @@ function Login() {
     resolver: yupResolver(LoginSchema)
   })
 
+  const {isLoggedin, setIsLoggedin} = useContext(LoginContext);
+
   const onSubmit = async (data) => {
     try {
       setIsLoading(true);
@@ -27,7 +30,11 @@ function Login() {
       const response = await axios.post('https://kashop1.runasp.net/api/Identity/Account/Login', data);
       
       if(response.status === 200)
+      {
+        localStorage.setItem('userToken', response.data.token);
+        setIsLoggedin(true);
         navigate('/');
+      }
     } catch (error) {
       if(error.response) {
         setServerError(error.response.message);
@@ -76,7 +83,14 @@ function Login() {
             <Button variant='contained' size='large' type='submit' disabled = {isLoading} >
               {isLoading? <CircularProgress />: 'Login'}
             </Button>
-            <Typography textAlign={'center'} fontSize='14px' color={theme.palette.neutral.main}>Forget password <Link component={RouterLink} to='/auth/forget'>Forget password</Link></Typography>
+            <Box sx = {{
+              p: '10px',
+              bgcolor: theme.palette.favColor.main,
+              borderRadius: "4px"
+            }}>
+              <Typography textAlign={'center'} fontSize='14px' color={theme.palette.neutral.main}>Dont Have An Account?  <Link component={RouterLink} to='/auth/register'>Sign Up</Link></Typography>
+            </Box>
+            <Typography textAlign={'center'} fontSize='14px' color={theme.palette.neutral.main}>Forget password? <Link component={RouterLink} to='/auth/forget'>Forget password? </Link></Typography>
 
           </Box>
 
