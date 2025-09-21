@@ -12,7 +12,7 @@ function CustomLink({page, path}) {
       fontWeight: 'bold',
       textDecoration: 'none',
       '&:hover': {
-        color: theme.palette.favColor.main
+        color: theme.palette.neutral.main
       }
 
     }} to = {path}>{page}</Link>

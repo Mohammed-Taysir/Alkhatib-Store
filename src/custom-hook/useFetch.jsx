@@ -5,7 +5,7 @@ import AxiosUserInstance from '../api/AxiosUserInstance';
 import AxiosInstance from '../api/AxiosInstance';
 
 function useFetch(url, dataName, hasToken = false) {
-    const [state, setState] = useState(null);
+
     const fetchData = async() => {
         let response;
         if(hasToken){

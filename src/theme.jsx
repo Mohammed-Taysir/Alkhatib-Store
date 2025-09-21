@@ -1,6 +1,7 @@
 import { createTheme } from "@mui/material";
 import { grey } from "@mui/material/colors";
 
+
 const theme = (mode)=> createTheme({
   palette: {
     mode: mode,
@@ -16,6 +17,7 @@ const theme = (mode)=> createTheme({
 
           favColor: {
             main: grey[300],
+            secondry: grey[250]
           },
           light: {
             main: '#fff'
@@ -29,6 +31,7 @@ const theme = (mode)=> createTheme({
 
           favColor: {
             main: grey[800],
+            
           },
           text: {
             primary: "#fff",
