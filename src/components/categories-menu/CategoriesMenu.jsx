@@ -41,7 +41,8 @@ function CategoriesMenu() {
         onClick={handleClick}
 
          direction='row' alignItems={'center'} spacing={4} p={1} border= {`1px solid ${theme.palette.neutral.main}`} sx={{
-          cursor: 'pointer'
+          cursor: 'pointer',
+          borderRadius: 5
         }} >
         <Stack direction='row' alignItems={'center'} spacing={1}>
           <WindowIcon sx={{
@@ -50,7 +51,7 @@ function CategoriesMenu() {
           <Typography color={theme.palette.neutral.main}>Categories</Typography>
         </Stack>
         <ArrowForwardIosIcon fontSize='10px' sx={{
-          color: theme.palette.neutral.main,
+          
           rotate: isOpen && '90deg',
           transition: '0.3s rotate'
         }} />

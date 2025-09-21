@@ -1,3 +1,56 @@
 .border {
     border: 2px solid #333;
 }
+
+.main-title::before,
+.main-title::after {
+    content: '';
+    width: 0;
+    height: 100%;
+    background-color: #64748B;
+    position: absolute;
+    
+
+    top:50%;
+    transform: translateY(-50%);
+    z-index: -1;
+    transition: all 0.5s linear;
+}
+
+.main-title::before {
+    left: 0;
+}
+.main-title::after {
+    right: 0;
+}
+
+.main-title {
+    position: relative;
+    transition: 0.1s color .3s ;  
+    cursor: pointer;
+}
+
+.main-title:hover {
+    color: white;
+}
+
+
+
+
+.main-title:hover::before,
+.main-title:hover::after  {
+    width: 100%;
+    height: 100%;
+}
+
+@media(max-width: 990px) {
+    html {
+        font-size: 12px;
+    }
+}
+
+
+
+
+
+

@@ -4,16 +4,21 @@ import MidBar from '../components/header/MidBar'
 import BottomBar from '../components/header/BottomBar'
 import { Outlet } from 'react-router-dom'
 import Footer from '../components/footer/Footer'
+import { Box, Container } from '@mui/material'
 
 function MainLayout() {
   return (
     <>
+      <Box component = 'header'>
         <TopBar />
         <MidBar />
         <BottomBar />
+      </Box>
+      <Container maxWidth = {'lg'}>
         <Outlet />
-        <Footer />
-        
+      </Container>
+      <Footer />
+
     </>
   )
 }

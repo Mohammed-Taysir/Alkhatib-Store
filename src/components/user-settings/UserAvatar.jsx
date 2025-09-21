@@ -26,18 +26,19 @@ function UserAvatar() {
 
     console.log(userFullName)
     return (
-        <Stack direction = 'row' alignItems={'center'} spacing = {1}>
+        <Stack direction = 'row' alignItems={'center'} spacing = {1} >
             <Box sx = {{
                 width: '45px',
                 height: '45px',
                 borderRadius: '50%',
-                bgcolor: theme.palette.neutral.main,
                 fontWeight: 400,
                 color: '#fff',
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                fontSize: '18px'
+                fontSize: '18px',
+                bgcolor: theme.palette.secondary.main
+                
                 
             }}>{userFullName?.at(0).toUpperCase()}</Box>
 

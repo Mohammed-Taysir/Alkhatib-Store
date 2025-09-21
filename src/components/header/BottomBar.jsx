@@ -51,7 +51,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 function BottomBar() {
   const theme = useTheme();
   return (
-    <Box py={2}>
+    <Box>
       <Container maxWidth='lg' >
         <Stack direction='row' alignItems={'center'} spacing = {2}>
           <Box>
@@ -62,10 +62,11 @@ function BottomBar() {
           <Search sx={{
             flexGrow: 1,
             bgcolor: theme.palette.favColor.main,
-            py: '3px'
+            py: '3px',
+            position: 'relative'
             
           }}>
-            <SearchIconWrapper>
+            <SearchIconWrapper >
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
@@ -78,13 +79,19 @@ function BottomBar() {
             <IconButton p = {1}>
               <LocalMallIcon  sx = {{
                 color: theme.palette.neutral.main,
-                fontSize: '30px'
+                fontSize: '30px',
+                '&:hover': {
+                    color: theme.palette.primary.main
+                }
               }} />
             </IconButton>
             <IconButton p = {1}>
               <FavoriteBorderOutlinedIcon  sx = {{
                 color: theme.palette.neutral.main,
-                fontSize: '30px'
+                fontSize: '30px',
+                "&:hover": {
+                  color: theme.palette.primary.main
+                }
               }} />
             </IconButton>
 

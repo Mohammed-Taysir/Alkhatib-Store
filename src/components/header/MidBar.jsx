@@ -33,10 +33,7 @@ const pages = [{
   page: 'contact',
   path: '/contact'
 },
-{
-  page: 'blog',
-  path: '/blog'
-}, {
+ {
   page: "About",
   path: '/about'
 } ,
@@ -53,13 +50,13 @@ function MidBar() {
     <Box>
       <Container maxWidth = 'lg'>
         <Stack direction={'row'} alignItems = 'center' justifyContent={'space-between'}>
-          <Box component ='img' src = {logo} sx = {{width: 135}}>
+          <Box component ='img' src = {logo} sx = {{width: 135, height: 120}}>
           </Box>
 
           <Stack direction={'row'} spacing = {5} alignItems = 'center'>
             {
               pages.map(page => (
-                <CustomLink page = {page.page} path = {page.path} />
+                <CustomLink page = {page.page} path = {page.path} key = {page.page}/>
               ))
             }
           </Stack>
