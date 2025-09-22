@@ -1,18 +1,50 @@
-import { Box, CircularProgress, Stack } from '@mui/material'
+import { Box, Button, CircularProgress, Grid, Stack } from '@mui/material'
 import React from 'react'
 import MainTitle from '../../main-title/MainTitle'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination } from 'swiper/modules';
+// import Swiper and modules styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import ProductCard from '../../product-card/ProductCard';
+import { Link } from 'react-router-dom';
 
-function ProductsSection({sectionTitle, products, isLoading}) {
-  if(isLoading)
+
+
+function ProductsSection({ sectionTitle, products, isLoading }) {
+  if (isLoading)
     return <CircularProgress />
   return (
-    <Box py = {10}>
+    <Box py={10}>
       <Stack alignItems={'center'}>
-        <MainTitle sectionTitle = {sectionTitle} />
+        <MainTitle sectionTitle={sectionTitle} />
       </Stack>
 
+
+      <Box pt = {4}>
+        
+        <Box sx = {{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gap: 4
+        }}>
+          
+          {
+            products.map(product => (
+              
+                <ProductCard key = {product.id} product = {product} />
+             
+            ))
+          }
+        </Box>
+
       
-      
+     
+        <Box textAlign={'center'} mt = {3}>
+          <Button variant='contained' color = 'secondary' size='lg'><Link to = '/shop' style = {{textDecoration: 'none', color: '#fff'}}>More</Link></Button>
+        </Box>
+      </Box>
 
 
     </Box>

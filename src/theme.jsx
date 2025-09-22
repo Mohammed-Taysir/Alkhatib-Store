@@ -20,7 +20,7 @@ const theme = (mode) => createTheme({
         },
         background: {
           default: "#FFFFFF", // خلفية أساسية
-          paper: "#E5E7EB", // خلفية الكروت
+          // paper: "#E5E7EB", // خلفية الكروت
         },
 
         favColor: {

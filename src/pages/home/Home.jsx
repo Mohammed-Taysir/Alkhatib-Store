@@ -8,7 +8,7 @@ function Home() {
   console.log(products)
   return (
     <Box component={'main'}>
-      <ProductsSection sectionTitle = {"Featured Products"} products = {!isLoading && products.data} isLoading = {isLoading} />
+      <ProductsSection sectionTitle = {"Featured Products"} products = {products?.data} isLoading = {isLoading} />
     </Box>
   )
 }
