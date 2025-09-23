@@ -59,6 +59,16 @@ function Cart() {
     }
   }
 
+  const clearCart = async() => {
+    try {
+      const response = await AxiosUserInstance.delete('/Customer/Carts/clear', {});
+      if(response.status === 200)
+        queryClient.invalidateQueries(['cartItems']);
+    }catch(error) {
+      console.log(error)
+    }
+  }
+
   console.log(cartItems)
   return (
     <Box py={4}>
@@ -123,7 +133,9 @@ function Cart() {
               Continue Shopping
           </Link>
           <Stack direction = 'row' alignItems = {'center'} spacing = {3} flexWrap={'wrap'}>
-              <Button variant = 'contained' size = 'large' sx = {{bgcolor: theme.palette.neutral.main}}>Clear Cart</Button>
+              <Button variant = 'contained' size = 'large' sx = {{bgcolor: theme.palette.neutral.main}} onClick={() => {
+                clearCart();
+              }}>Clear Cart</Button>
               <Button variant = 'contained' size = 'large' color = 'secondary'>Checkout</Button>
           </Stack>
         </Stack>
