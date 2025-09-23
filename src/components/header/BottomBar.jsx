@@ -1,4 +1,4 @@
-import { Box, Container, IconButton, Stack } from '@mui/material'
+import { Box, Container, IconButton, Stack, useMediaQuery } from '@mui/material'
 import React from 'react'
 import CategoriesMenu from '../categories-menu/CategoriesMenu'
 import { styled, alpha, useTheme } from '@mui/material/styles';
@@ -59,7 +59,13 @@ function BottomBar() {
 
 
           </Box>
-          <Search sx={{
+          
+          {
+            useMediaQuery('(max-width: 500px)') ? <IconButton><SearchIcon fontSize='large' sx = {{color: theme.palette.neutral.main,
+             ':hover': {
+              color: theme.palette.primary.main
+             }
+            }} /></IconButton> : <Search sx={{
             flexGrow: 1,
             bgcolor: theme.palette.favColor.main,
             py: '3px',
@@ -74,6 +80,7 @@ function BottomBar() {
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search>
+          }
 
           <Stack direction = 'row'>
             <IconButton p = {1}>

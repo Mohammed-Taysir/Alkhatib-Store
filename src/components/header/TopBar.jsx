@@ -88,10 +88,7 @@ function SimpleListMenu() {
   function TopBar() {
     const {mode, toggleMode} = useContext(ThemeContext)
     return (
-      <Box sx={{
-        bgcolor: '#2b3445',
-
-      }}>
+      <Box bgcolor={'#2b3445'}>
         <Container maxWidth='lg'>
           <Stack direction='row' alignItems="center" py={1}>
             <Typography variant='body2' sx={{

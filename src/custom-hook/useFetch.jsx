@@ -6,28 +6,31 @@ import AxiosInstance from '../api/AxiosInstance';
 
 function useFetch(url, dataName, hasToken = false) {
 
-    const fetchData = async() => {
+    const fetchData = async () => {
         let response;
-        if(hasToken){
-            response = await AxiosUserInstance.get(url);
-        }else 
-        {
-            response = await AxiosInstance.get(url);
+        try {
+            if (hasToken) {
+                response = await AxiosUserInstance.get(url);
+            } else {
+                response = await AxiosInstance.get(url);
+            }
+        }catch(error) {
+            console.log(error)
         }
 
         return response;
     }
-    const {data, isLoading, isError, error} = useQuery({
+    const { data, isLoading, isError, error } = useQuery({
         queryKey: [dataName],
         queryFn: fetchData,
         staleTime: 1000 * 60 * 5
     })
 
-    
-    
 
-    return {data, isLoading, isError, error};
-  
+
+
+    return { data, isLoading, isError, error };
+
 }
 
 export default useFetch;
