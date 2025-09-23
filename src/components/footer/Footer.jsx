@@ -4,7 +4,7 @@ import darklogo from '../../assets/darklogo.png'
 
 function Footer() {
   return (
-    <Box bgcolor={'#2b3445'}>
+    <Box bgcolor={'#2b3445'} >
       <Container maxWidth = 'lg' sx = {{
         display: 'flex',
         justifyContent: 'space-between',

@@ -1,6 +1,7 @@
-import { Box, Button, Card, CardContent, CardMedia, Stack, Typography, useTheme } from '@mui/material'
+import { Box, Button, Card, CardContent, CardMedia, Link, Stack, Typography, useTheme } from '@mui/material'
 import React from 'react'
 import StarIcon from '@mui/icons-material/Star';
+import { Link as RouterLink } from 'react-router-dom';
 
 function ProductCard({ product }) {
   const theme = useTheme();
@@ -53,15 +54,22 @@ function ProductCard({ product }) {
       </CardMedia>
       <Button className='view-button' variant='contained' sx = {{
         bgcolor: theme.palette.neutral.main,
-        color: '#fff',
+
         position: 'absolute',
         left: '50%',
         transform: 'translateX(-50%)',
         bottom: "-100%",
         boxShadow: '0 0 12px rgba(0, 0, 0, .2)',
-        transition: '0.5s'
+        transition: '0.5s',
+        px: 2,
+        py: 1
         
-      }}>View</Button>
+      }}><Link component={RouterLink} to = {`/product/${product.id}`} sx = {{
+        color: '#fff',
+        fontSize: '1rem',
+        textTransform: 'capitalize'
+
+      }}>view</Link></Button>
       </Box>
       <CardContent>
         <Stack spacing = {2}>
