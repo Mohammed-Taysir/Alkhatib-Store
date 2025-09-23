@@ -7,6 +7,7 @@ import SearchIcon from '@mui/icons-material/Search';
 
 import LocalMallIcon from '@mui/icons-material/LocalMall';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import CartIcon from '../cart-icon/CartIcon';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -83,15 +84,7 @@ function BottomBar() {
           }
 
           <Stack direction = 'row'>
-            <IconButton p = {1}>
-              <LocalMallIcon  sx = {{
-                color: theme.palette.neutral.main,
-                fontSize: '30px',
-                '&:hover': {
-                    color: theme.palette.primary.main
-                }
-              }} />
-            </IconButton>
+            <CartIcon />
             <IconButton p = {1}>
               <FavoriteBorderOutlinedIcon  sx = {{
                 color: theme.palette.neutral.main,
