@@ -13,7 +13,7 @@ function ImgsSlider({ product }) {
     const theme = useTheme();
     const isSmallScreen = useMediaQuery('(max-width: 778px)');
     return (
-        <Box sx = {{overflow: 'hidden'}}>
+        <Box>
             <Box className='main-image'>
                 <Box component={'img'} src={active} sx={{
                     width: isSmallScreen? '100%': '400px',
