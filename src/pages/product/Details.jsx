@@ -9,11 +9,14 @@ import { useNavigate } from 'react-router-dom';
 import { Bounce, Flip, toast } from 'react-toastify';
 import axios from 'axios';
 import AxiosUserInstance from '../../api/AxiosUserInstance';
+import { useQueryClient } from '@tanstack/react-query';
 function Details({ product }) {
   const theme = useTheme();
 
   const [onHover, setOnHover] = useState(false);
   const { isLoggedin } = useContext(LoginContext);
+
+  const queryClient = useQueryClient();
 
   const navigate = useNavigate();
 
@@ -35,7 +38,8 @@ function Details({ product }) {
 
       try {
         const response = await AxiosUserInstance.post('/Customer/Carts', { "productId": product.id });
-        toast.success(response.data.message, {
+        if(response.status === 200) {
+          toast.success(response.data.message, {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -46,6 +50,8 @@ function Details({ product }) {
           theme: "light",
           transition: Flip,
         });
+        queryClient.invalidateQueries(['cartItems']);
+        }
       } catch (error) {
 
         toast.error(error.response.data.error, {
