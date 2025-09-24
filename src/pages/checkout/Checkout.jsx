@@ -4,6 +4,9 @@ import useFetch from '../../custom-hook/useFetch';
 import { Controller, useForm } from 'react-hook-form';
 import AxiosInstance from '../../api/AxiosInstance';
 import AxiosUserInstance from '../../api/AxiosUserInstance';
+import PageHeading from '../../components/page-heading/PageHeading';
+
+import image from '../../assets/checout-background.webp'
 
 function Checkout() {
   const isSmallScreen = useMediaQuery('(max-width: 900px)');
@@ -27,9 +30,9 @@ function Checkout() {
   }
   return (
     <Box py={6}>
-      <Typography variant='h4' component='h2' mb={4} color={theme.palette.neutral.secondary}>Checkout</Typography>
+      <PageHeading title={'Checkout'} description = {'Your satisfaction and security are our priority.'} image = {image} left = '20%' color = '#00E5FF'/>
 
-      <Stack component={'form'} direction= {isSmallScreen? 'column': 'row'} spacing={4} onSubmit={handleSubmit(onSubmit)} >
+      <Stack mt = {3} component={'form'} direction= {isSmallScreen? 'column': 'row'} spacing={4} onSubmit={handleSubmit(onSubmit)} >
         <Stack className='checkout-from' flexGrow={1} spacing={3}>
           <Stack direction='row' spacing={2}>
             <TextField label='First Name' color={theme.palette.neutral.main} sx={{

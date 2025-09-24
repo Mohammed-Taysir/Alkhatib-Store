@@ -16,6 +16,9 @@ import { useQueryClient } from '@tanstack/react-query';
 import { Axios } from 'axios';
 import { Link as RouterLink} from 'react-router-dom';
 
+import image from '../../assets/cart-page-background.jpg'
+import PageHeading from '../../components/page-heading/PageHeading';
+
 
 function Cart() {
   const theme = useTheme();
@@ -72,18 +75,8 @@ function Cart() {
   console.log(data)
   return (
     <Box py={4}>
-      <Box position={'relative'}>
-        <Box component={'img'} src='/cart-page-background.jpg' width='100%' height='350px' borderRadius={4} />
-        <Typography component={'h2'} variant='h4' sx={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          color: theme.palette.neutral.main,
-          fontWeight: 'bold',
-
-        }}>Cart Page</Typography>
-      </Box>
+      <PageHeading title = 'All Your Picks in One Place' description = 'Review, update, and checkout easily.' image = {image} color = {theme.palette.neutral.secondary} left = '40%' />
+      
       <Box pt={4}>
         <TableContainer sx={{ borderRadius: 4 }}>
           <Table sx={{ minWidth: 650, }} aria-label="simple table">

@@ -13,6 +13,7 @@ import About from "./pages/about/About";
 import AuthLayout from "./layouts/AuthLayout";
 import ForgetPassword from "./pages/forget-password/ForgetPassword";
 import ResetPassword from "./pages/reset-password/ResetPassword";
+import ProtectRouter from "./protected/ProtectRouter";
 
 
 
@@ -28,11 +29,15 @@ const router = createBrowserRouter([
             
             {
                 path: '/cart',
-                element: <Cart />
+                element: <ProtectRouter>
+                    <Cart />
+                </ProtectRouter>
             },
             {
                 path: '/checkout',
-                element: <Checkout />
+                element: <ProtectRouter>
+                    <Checkout />
+                </ProtectRouter>
             },
             {
                 path: '/shop',
