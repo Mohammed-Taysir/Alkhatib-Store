@@ -17,6 +17,7 @@ const theme = (mode) => createTheme({
         },
         neutral: {
           main: "#64748B",
+          secondary: '#035186',
         },
         background: {
           default: "#FFFFFF", // خلفية أساسية

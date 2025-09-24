@@ -69,7 +69,7 @@ function Cart() {
     }
   }
 
-  console.log(cartItems)
+  console.log(data)
   return (
     <Box py={4}>
       <Box position={'relative'}>
@@ -88,11 +88,7 @@ function Cart() {
         <TableContainer sx={{ borderRadius: 4 }}>
           <Table sx={{ minWidth: 650, }} aria-label="simple table">
             <TableHead>
-              <TableRow bgcolor='#eff4f7' sx={{
-                '..css-1we4goh-MuiPaper-root-MuiTableContainer-root': {
-                  boxShadow: 'transparent'
-                }
-              }}>
+              <TableRow bgcolor='#eff4f7'>
                 <TableCell color={theme.palette.neutral.main}>Product</TableCell>
                 <TableCell color={theme.palette.neutral.main} align="center">Price</TableCell>
                 <TableCell color={theme.palette.neutral.main} align="center">Quantity</TableCell>
@@ -118,13 +114,26 @@ function Cart() {
                       </Stack>
                     </TableCell>
                     <TableCell align='center'>${item.totalPrice}</TableCell>
-                    <TableCell ><IconButton onClick={() => {
+                    <TableCell align = 'center'><IconButton onClick={() => {
                       removeItem(item.productId)
                     }}><DeleteIcon sx={{ color: theme.palette.neutral.main }} /></IconButton></TableCell>
                   </TableRow>
                 })
               }
-
+            <TableRow>
+              <TableCell sx = {{
+                fontSize: '18px',
+                fontWeight: 'bold',
+                color: theme.palette.neutral.main
+                
+            }} colSpan={3}>Total Cart Price</TableCell>
+              <TableCell align = 'center'>
+                ${data.data.cartTotal}
+              </TableCell>
+              <TableCell align = 'center'><Button variant = 'contained' size = 'large' sx = {{bgcolor: theme.palette.neutral.main}} onClick={() => {
+                clearCart();
+              }}>Clear Cart</Button></TableCell>
+            </TableRow>
             </TableBody>
           </Table>
         </TableContainer>
@@ -133,10 +142,8 @@ function Cart() {
               Continue Shopping
           </Link>
           <Stack direction = 'row' alignItems = {'center'} spacing = {3} flexWrap={'wrap'}>
-              <Button variant = 'contained' size = 'large' sx = {{bgcolor: theme.palette.neutral.main}} onClick={() => {
-                clearCart();
-              }}>Clear Cart</Button>
-              <Button variant = 'contained' size = 'large' color = 'secondary'>Checkout</Button>
+              
+              <Button variant = 'contained' size = 'large' color = 'secondary' component = {RouterLink} to = '/checkout'>Checkout</Button>
           </Stack>
         </Stack>
       </Box>
