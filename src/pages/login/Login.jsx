@@ -78,7 +78,9 @@ function Login() {
               error={errors.password}
               helperText={errors.password?.message} />
               {serverError && (<Typography color = 'error'>{serverError}</Typography>)}
-            <Button variant='contained' size='large' type='submit' disabled = {isLoading} >
+            <Button variant='contained' size='large' type='submit' sx = {{
+              bgcolor: theme.palette.neutral.secondary
+            }} disabled = {isLoading} >
               {isLoading? <CircularProgress />: 'Login'}
             </Button>
             <Box sx = {{

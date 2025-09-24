@@ -65,7 +65,9 @@ function ForgetPassword() {
 
 
                         {serverError && (<Typography color='error'>{serverError}</Typography>)}
-                        <Button variant="contained" endIcon={<SendIcon />} disabled = {isLoading} type = 'submit'>
+                        <Button variant="contained" endIcon={<SendIcon />} size = 'large' sx = {{
+                            bgcolor: theme.palette.neutral.secondary
+                        }} disabled = {isLoading} type = 'submit'>
                             {
                                 isLoading? <CircularProgress />: 'Send'
                             }

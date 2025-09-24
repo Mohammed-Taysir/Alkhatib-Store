@@ -61,6 +61,30 @@ const theme = (mode) => createTheme({
       }),
 
   },
+  components: {
+  MuiOutlinedInput: {
+    styleOverrides: {
+      root: {
+        "&:hover .MuiOutlinedInput-notchedOutline": {
+          borderColor: '#035186'
+        },
+        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+          borderColor: '#035186'
+        },
+      },
+    },
+  },
+  MuiInputLabel: {
+    styleOverrides: {
+      root: {
+        color: '#035186',
+        "&.Mui-focused": {
+          color: '#035186'
+        },
+      },
+    },
+  },
+},
 });
 
 export default theme;

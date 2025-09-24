@@ -45,27 +45,28 @@ function Checkout() {
               flexGrow: 1
             }} />
           </Stack>
-          <TextField label='Email' color={theme.palette.neutral.main} sx={{
+          <TextField label='Email' sx={{
+            '.MuiInputBase-root': {
+              borderRadius: 4
+            },
+            
+          }} />
+          <TextField label='Company Name (optional)' sx={{
             '.MuiInputBase-root': {
               borderRadius: 4
             }
           }} />
-          <TextField label='Company Name (optional)' color={theme.palette.neutral.main} sx={{
+          <TextField label='Company Name (optional)' sx={{
             '.MuiInputBase-root': {
               borderRadius: 4
             }
           }} />
-          <TextField label='Company Name (optional)' color={theme.palette.neutral.main} sx={{
+          <TextField label='Address Information' sx={{
             '.MuiInputBase-root': {
               borderRadius: 4
             }
           }} />
-          <TextField label='Address Information' color={theme.palette.neutral.main} sx={{
-            '.MuiInputBase-root': {
-              borderRadius: 4
-            }
-          }} />
-          <TextField label='Phone' color={theme.palette.neutral.main} sx={{
+          <TextField label='Phone' sx={{
             '.MuiInputBase-root': {
               borderRadius: 4
             }

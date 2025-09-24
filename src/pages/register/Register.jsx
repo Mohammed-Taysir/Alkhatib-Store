@@ -117,7 +117,9 @@ Please check your email to confirm your registration.`, {
             }}
               error={errors.password}
               helperText={errors.password?.message} />
-            <Button variant='contained' size='large' type='submit' disabled = {isLoading} >
+            <Button variant='contained' size='large' type='submit' sx = {{
+              bgcolor: theme.palette.neutral.secondary
+            }} disabled = {isLoading} >
               {isLoading? <CircularProgress />: 'Sign Up'}
             </Button>
             <Typography textAlign={'center'} fontSize='14px' color={theme.palette.neutral.main}>Already Have An Account <Link component={RouterLink} to='/auth/'>Login</Link></Typography>
