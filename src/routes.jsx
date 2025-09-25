@@ -14,6 +14,10 @@ import AuthLayout from "./layouts/AuthLayout";
 import ForgetPassword from "./pages/forget-password/ForgetPassword";
 import ResetPassword from "./pages/reset-password/ResetPassword";
 import ProtectRouter from "./protected/ProtectRouter";
+import Profile from "./pages/profile/Profile";
+import Info from "./pages/profile/Info";
+import Orders from "./pages/profile/Orders";
+import Settings from "./pages/profile/Settings";
 
 
 
@@ -58,6 +62,26 @@ const router = createBrowserRouter([
             {
                 path: '/about',
                 element: <About />
+            },
+            {
+                path: '/profile',
+                element: <ProtectRouter>
+                    <Profile />
+                </ProtectRouter>,
+                children: [
+                    {
+                        index: true,
+                        element: <Info />
+                    }, 
+                    {
+                        path: 'orders',
+                        element: <Orders />
+                    }, 
+                    {
+                        path: 'settings',
+                        element: <Settings />
+                    }
+                ]
             }
         ]
     },

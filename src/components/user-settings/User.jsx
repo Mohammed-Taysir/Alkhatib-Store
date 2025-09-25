@@ -39,7 +39,14 @@ function User() {
           onClick={handleClick}
         >
           {
-            isLoggedin ? <UserAvatar /> : <PersonOutlineIcon />
+            isLoggedin ? <UserAvatar /> : <Box sx = {{width: '60px', height: '60px', 
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderRadius: '50%',
+          
+              color: theme.palette.neutral.secondary
+            }} border = {`1px solid ${theme.palette.favColor.main}`} ><PersonOutlineIcon  sx = {{fontSize: '35px'}} /></Box>
           }
         </Button>
 
@@ -60,7 +67,10 @@ function User() {
         {
           isLoggedin ?
             <>
-              <MenuItem onClick={handleClose}>Profile</MenuItem>
+              <MenuItem onClick={handleClose}><Link component={RouterLink} to = '/profile' sx = {{
+                color: theme.palette.text.primary,
+                textDecoration: 'none',
+              }}>Profile</Link></MenuItem>
               <MenuItem onClick={handleClose}>Settings</MenuItem>
               <MenuItem onClick={() => {
                 handleClose();
