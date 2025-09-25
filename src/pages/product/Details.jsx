@@ -72,7 +72,7 @@ function Details({ product }) {
     }
   }
   return (
-    <Box sx={{ overflow: 'hidden' }}>
+    <Box sx={{ overflow: 'hidden' }} flexGrow = {1}>
 
       <Stack spacing={1} pb={2}>
         <Typography fontSize='1.8rem'>{product.name}</Typography>

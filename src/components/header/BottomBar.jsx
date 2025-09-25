@@ -54,11 +54,9 @@ function BottomBar() {
   return (
     <Box>
       <Container maxWidth='lg' >
-        <Stack direction='row' alignItems={'center'} spacing = {2}>
+        <Stack direction='row' alignItems={'center'} spacing = {useMediaQuery('(max-width: 370px)')? 0: 2}>
           <Box>
             <CategoriesMenu />
-
-
           </Box>
           
           {
@@ -70,7 +68,8 @@ function BottomBar() {
             flexGrow: 1,
             bgcolor: theme.palette.favColor.main,
             py: '3px',
-            position: 'relative'
+            position: 'relative',
+            borderRadius: 6
             
           }}>
             <SearchIconWrapper >

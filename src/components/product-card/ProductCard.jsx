@@ -45,7 +45,7 @@ function ProductCard({ product }) {
       <Box position={'relative'} sx = {{
         overflow: 'hidden'
       }}>
-        <CardMedia component={'img'} image={product.mainImageUrl} sx={{
+        <CardMedia component={'img'} image={product.mainImageUrl} alt = {product.name} sx={{
         objectFit: 'contained',
         maxWidth: '100%',
         height: '220px'

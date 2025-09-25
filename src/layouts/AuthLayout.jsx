@@ -1,11 +1,16 @@
-import { Box, useTheme } from '@mui/material'
+import { Box, Container, useTheme } from '@mui/material'
 import React from 'react'
-import { Outlet } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
+import logo from '../assets/logo.png'
 
 function AuthLayout() {
     const theme = useTheme();
   return (
-    <Box sx = {{
+    <Box>
+      <Container maxWidth = 'lg' sx = {{position: 'relative'}}>
+        <Link style = {{position: 'absolute'}} to = '/'><Box component={'img'}  src = {logo} sx = {{width: '130px'}} /></Link>
+      </Container>
+      <Box sx = {{
         width: '100%',
         height: '100vh',
         display: 'flex',
@@ -14,6 +19,7 @@ function AuthLayout() {
         bgcolor: theme.palette.favColor.main
     }}>
         <Outlet />
+    </Box>
     </Box>
   )
 }

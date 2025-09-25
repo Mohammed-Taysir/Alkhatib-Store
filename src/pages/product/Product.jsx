@@ -24,7 +24,7 @@ function Product() {
       <Container maxWidth = 'lg'>
         <Stack direction = { isSmallScreen? 'column': 'row'} spacing={4} >
           <ImgsSlider product = {product} />
-          <Details sx = {{flexGrow: 1}} product = {product} />
+          <Details  sx = {{flexGrow: 1}} product = {product} />
         </Stack>
       </Container>
     </Box>

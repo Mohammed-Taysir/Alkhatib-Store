@@ -90,7 +90,7 @@ function Login() {
             }}>
               <Typography textAlign={'center'} fontSize='14px' color={theme.palette.neutral.main}>Dont Have An Account?  <Link component={RouterLink} to='/auth/register'>Sign Up</Link></Typography>
             </Box>
-            <Typography textAlign={'center'} fontSize='14px' color={theme.palette.neutral.main}>Forget password? <Link component={RouterLink} to='/auth/forget'>Forget password? </Link></Typography>
+            <Typography textAlign={'center'} fontSize='14px' color={theme.palette.neutral.main}>Forget Password? <Link component={RouterLink} to='/auth/forget'>Forget password </Link></Typography>
 
           </Box>
 

@@ -17,7 +17,7 @@ function ProductsSection({ sectionTitle, products, isLoading }) {
   if (isLoading)
     return <CircularProgress />
   return (
-    <Box py={10}>
+    <Box py={10} component={'section'}>
       <Stack alignItems={'center'}>
         <MainTitle sectionTitle={sectionTitle} />
       </Stack>
