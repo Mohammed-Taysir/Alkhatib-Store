@@ -1,8 +1,19 @@
 import { createTheme } from "@mui/material";
 import { grey } from "@mui/material/colors";
+import createCache from "@emotion/cache";
+import { prefixer } from "stylis";
+import rtlPlugin from "stylis-plugin-rtl";
+import i18n from './i18n.jsx';
 
+
+
+const direction  = i18n.dir()
 
 const theme = (mode) => createTheme({
+  direction: direction,
+  typography: {
+    direction: direction
+  },
   palette: {
     mode: mode,
     ...(mode === "light"
@@ -85,6 +96,15 @@ const theme = (mode) => createTheme({
     },
   },
 },
+
+
+
+});
+
+export const createCacheWithDirection = (direction) => createCache({
+  key: direction === "rtl" ? "muirtl" : "muiltr",
+  stylisPlugins: direction === "rtl" ? [prefixer, rtlPlugin] : [],
 });
 
 export default theme;
+

@@ -26,34 +26,38 @@ import StoreIcon from '@mui/icons-material/Store';
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import InfoIcon from '@mui/icons-material/Info';
 import BookIcon from '@mui/icons-material/Book';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
-const pages = [{
-  page: 'home',
+
+const settings = ['Profile', 'Account', 'Logout'];
+
+function MidBar() {
+  const {t} = useTranslation();
+  const theme = useTheme();
+  const pages = [{
+  page: t('Home'),
   path: '/',
   icon: HomeIcon
 }, {
-  page: 'Products',
+  page: t('Products'),
   path: '/shop',
   icon: StoreIcon
 }, {
-  page: 'contact',
+  page: t('Contact'),
   path: '/contact',
   icon: ConnectWithoutContactIcon
 },
 {
-  page: "About",
+  page: t('About'),
   path: '/about',
   icon: InfoIcon
 },
 {
-  page: 'blog',
+  page: t("Blog"),
   path: '/blog',
   icon: BookIcon
 }];
-const settings = ['Profile', 'Account', 'Logout'];
-
-function MidBar() {
-  const theme = useTheme()
 
   return (
     <Box>
@@ -62,8 +66,8 @@ function MidBar() {
           {
             useMediaQuery('(max-width: 990px)') && (<MenuDrawer links = {pages} />)
           }
-          <Box component='img' src={logo} sx={{ width: 135, height: 120 }}>
-          </Box>
+          <Link><Box component='img' src={logo} sx={{ width: 135, height: 120 }}>
+          </Box></Link>
 
           {
             useMediaQuery('(min-width: 990px)') && <Stack direction={'row'} spacing={5} alignItems='center'>

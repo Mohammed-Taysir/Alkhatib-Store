@@ -15,6 +15,10 @@ import Menu from '@mui/material/Menu';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import { useContext } from 'react';
 import { ThemeContext } from '../../context/ThemeContext';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import i18n from '../../i18n';
+import { useTranslation } from 'react-i18next';
 
 const options = [
   'AR',
@@ -23,10 +27,17 @@ const options = [
 
 
 function SimpleListMenu() {
+  
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [selectedIndex, setSelectedIndex] = React.useState(1);
   const open = Boolean(anchorEl);
 
+  
+
+ useEffect(() => {
+   i18n.changeLanguage(options[selectedIndex].toLocaleLowerCase());
+  document.body.dir  = i18n.dir();
+ }, [selectedIndex])
   const handleClickListItem = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -87,8 +98,12 @@ function SimpleListMenu() {
 
   function TopBar() {
     const {mode, toggleMode} = useContext(ThemeContext)
+    const {t} = useTranslation();
     return (
-      <Box bgcolor={'#2b3445'}>
+      <Box bgcolor={'#2b3445'} sx = {{
+        borderBottomLeftRadius: 6,
+        borderBottomRightRadius: 6
+      }}>
         <Container maxWidth='lg'>
           <Stack direction='row' alignItems="center" py={1}>
             <Typography variant='body2' sx={{
@@ -98,15 +113,17 @@ function SimpleListMenu() {
               fontSize: '10px',
               fontWeight: "bold",
               color: '#fff',
-              borderRadius: '12px'
+              borderRadius: '12px',
+         
             }}>HOT</Typography>
             <Typography sx={{
               fontSize: '12px',
               fontWeight: 300,
-              color: '#fff'
+              color: '#fff',
+             
 
             }}>
-              Free Shipping...
+              {t('freeShipping')}...
             </Typography>
             <Box flexGrow={1} />
             <Stack direction='row' alignItems={'center'} spacing={2}>

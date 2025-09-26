@@ -11,18 +11,22 @@ import { CssBaseline } from '@mui/material';
 import ThemeContextProvider from './context/ThemeContext.jsx';
 import { ToastContainer } from 'react-toastify';
 import LoginContextProvider from './context/LoginContext.jsx';
+import i18n from './i18n.jsx';
+
 
 
 
 createRoot(document.getElementById('root')).render(
 
     <>
-        <LoginContextProvider>
+       
+            <LoginContextProvider>
             <ThemeContextProvider>
                 <ToastContainer />
                 <App />
             </ThemeContextProvider>
         </LoginContextProvider>
+     
     </>
 
 )

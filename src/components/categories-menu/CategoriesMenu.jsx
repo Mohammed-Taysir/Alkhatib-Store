@@ -13,11 +13,13 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { useTranslation } from 'react-i18next';
 
 
 
 
 function CategoriesMenu() {
+  const {t} = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const theme = useTheme();
   const { data: categories, isLoading, isError, error } = useFetch('/Customer/Categories', 'categories', false);
@@ -48,7 +50,7 @@ function CategoriesMenu() {
           <WindowIcon sx={{
             color: theme.palette.neutral.main
           }} />
-          <Typography color={theme.palette.neutral.main}>Categories</Typography>
+          <Typography color={theme.palette.neutral.main}>{t('Categories')}</Typography>
         </Stack>
         <ArrowForwardIosIcon fontSize='10px' sx={{
           

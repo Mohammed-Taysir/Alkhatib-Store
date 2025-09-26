@@ -18,9 +18,11 @@ import { Link as RouterLink} from 'react-router-dom';
 
 import image from '../../assets/cart-page-background.jpg'
 import PageHeading from '../../components/page-heading/PageHeading';
+import { useTranslation } from 'react-i18next';
 
 
 function Cart() {
+  const {t} = useTranslation();
   const theme = useTheme();
   const queryClient = useQueryClient();
   const { data, isLoading, isError, error } = useFetch('/Customer/Carts', 'cartItems', true);
@@ -75,17 +77,17 @@ function Cart() {
   console.log(data)
   return (
     <Box py={4}>
-      <PageHeading title = 'All Your Picks in One Place' description = 'Review, update, and checkout easily.' image = {image} color = {theme.palette.neutral.secondary} left = '40%' />
+      <PageHeading title = {t('AllYourPicksTitle')} description = {t('AllYourPicksSubtitle')} image = {image} color = {theme.palette.neutral.secondary} left = '40%' />
       
       <Box pt={4}>
         <TableContainer sx={{ borderRadius: 4 }}>
           <Table sx={{ minWidth: 650, }} aria-label="simple table">
             <TableHead>
               <TableRow bgcolor='#eff4f7'>
-                <TableCell color={theme.palette.neutral.main}>Product</TableCell>
-                <TableCell color={theme.palette.neutral.main} align="center">Price</TableCell>
-                <TableCell color={theme.palette.neutral.main} align="center">Quantity</TableCell>
-                <TableCell color={theme.palette.neutral.main} align="center">Total</TableCell>
+                <TableCell color={theme.palette.neutral.main}>{t("Product")}</TableCell>
+                <TableCell color={theme.palette.neutral.main} align="center">{t('Price')}</TableCell>
+                <TableCell color={theme.palette.neutral.main} align="center">{t('Quantity')}</TableCell>
+                <TableCell color={theme.palette.neutral.main} align="center">{t('Total')}</TableCell>
                 <TableCell color={theme.palette.neutral.main} align="center"></TableCell>
               </TableRow>
             </TableHead>
@@ -119,24 +121,24 @@ function Cart() {
                 fontWeight: 'bold',
                 color: theme.palette.neutral.main
                 
-            }} colSpan={3}>Total Cart Price</TableCell>
+            }} colSpan={3}>{t('Total Cart Price')}</TableCell>
               <TableCell align = 'center'>
                 ${data.data.cartTotal}
               </TableCell>
               <TableCell align = 'center'><Button variant = 'contained' size = 'large' sx = {{bgcolor: theme.palette.neutral.main}} onClick={() => {
                 clearCart();
-              }}>Clear Cart</Button></TableCell>
+              }}>{t('CLEAR CART')}</Button></TableCell>
             </TableRow>
             </TableBody>
           </Table>
         </TableContainer>
         <Stack mt = {2} direction = 'row' alignItems = {'center'} justifyContent={'space-between'} flexWrap = {'wrap'}>
           <Link mb = {2} component={RouterLink} to = '/shop' color = {theme.palette.text.primary}>
-              Continue Shopping
+              {t('Continue Shopping')}
           </Link>
           <Stack direction = 'row' alignItems = {'center'} spacing = {3} flexWrap={'wrap'}>
               
-              <Button variant = 'contained' size = 'large' color = 'secondary' component = {RouterLink} to = '/checkout'>Checkout</Button>
+              <Button variant = 'contained' size = 'large' color = 'secondary' component = {RouterLink} to = '/checkout'>{t('CHECKOUT')}</Button>
           </Stack>
         </Stack>
       </Box>

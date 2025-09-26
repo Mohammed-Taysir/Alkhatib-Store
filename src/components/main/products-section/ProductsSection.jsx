@@ -9,10 +9,12 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import ProductCard from '../../product-card/ProductCard';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 
 
 function ProductsSection({ sectionTitle, products, isLoading }) {
+  const {t} = useTranslation();
   const theme = useTheme();
   if (isLoading)
     return <CircularProgress />
@@ -45,7 +47,7 @@ function ProductsSection({ sectionTitle, products, isLoading }) {
         <Box textAlign={'center'} mt = {3}>
           <Button variant='contained' sx = {{
             bgcolor: theme.palette.neutral.secondary
-          }} size='large'><Link to = '/shop' style = {{textDecoration: 'none', color: '#fff'}}>More</Link></Button>
+          }} size='large'><Link to = '/shop' style = {{textDecoration: 'none', color: '#fff'}}>{t("More")}</Link></Button>
         </Box>
       </Box>
 

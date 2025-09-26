@@ -51,6 +51,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 function BottomBar() {
   const theme = useTheme();
+  const isSmallScreen = useMediaQuery('(max-width: 500px)');
   return (
     <Box>
       <Container maxWidth='lg' >

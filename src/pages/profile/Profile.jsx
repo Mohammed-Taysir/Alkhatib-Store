@@ -1,4 +1,4 @@
-import { CircularProgress, Stack, Typography, useTheme } from '@mui/material'
+import { CircularProgress, Stack, Typography, useMediaQuery, useTheme } from '@mui/material'
 import React from 'react'
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
@@ -16,10 +16,13 @@ import SettingsSuggestOutlinedIcon from '@mui/icons-material/SettingsSuggestOutl
 
 import personal from '../../assets/personalimg.jpg'
 import useFetch from '../../custom-hook/useFetch';
+import { useTranslation } from 'react-i18next';
 function Profile() {
+    const {t} = useTranslation();
     const theme = useTheme();
     const {data, isLoading, isError, error} = useFetch('/Users/profile', 'user', true);
-
+    const isSmallScreen = useMediaQuery('(max-width: 620px)');
+    console.log(isSmallScreen)
     if(isLoading)
         return <CircularProgress />
 
@@ -28,7 +31,7 @@ function Profile() {
 
     const user = data?.data;
     return (
-        <Stack direction='row'  spacing={4} py = {4}>
+        <Stack direction= {isSmallScreen? 'column': 'row'}  spacing={4} py = {4}>
             
             <Stack  bgcolor = {theme.palette.favColor.main} p = {3} borderRadius={4}>
                  <Box sx = {{
@@ -39,13 +42,13 @@ function Profile() {
                     gap: 2
                  }} >
                     <Box component={'img'} src = {personal} sx = {{
-                        width: '110px',
-                        height: '110px',
+                        width: '80px',
+                        height: '80px',
                         borderRadius: '50%'
                     }} />
-                    <Typography>{user.fullName}</Typography>
+                    <Typography mb = {2}>{user.fullName}</Typography>
                  </Box>
-                 <Divider />
+                 <Divider  />
                 <Box sx={{ width: '100%', maxWidth: 360, borderRadius: 4 , height: '100%'}}>
                    
                     <nav aria-label="main mailbox folders">
@@ -55,7 +58,7 @@ function Profile() {
                                     <ListItemIcon>
                                         <AccountCircleOutlinedIcon />
                                     </ListItemIcon>
-                                    <ListItemText primary="Info" />
+                                    <ListItemText primary= {t('info')} />
                                 </ListItemButton>
                             </ListItem>
                             <ListItem disablePadding>
@@ -63,7 +66,7 @@ function Profile() {
                                     <ListItemIcon>
                                         <AddShoppingCartOutlinedIcon />
                                     </ListItemIcon>
-                                    <ListItemText primary="Orders" />
+                                    <ListItemText primary={t('orders')} />
                                 </ListItemButton>
                             </ListItem>
                             <ListItem disablePadding>
@@ -71,7 +74,7 @@ function Profile() {
                                     <ListItemIcon>
                                         <SettingsSuggestOutlinedIcon />
                                     </ListItemIcon>
-                                    <ListItemText primary="Settings" />
+                                    <ListItemText primary={t('settings')} />
                                 </ListItemButton>
                             </ListItem>
                         </List>
@@ -81,7 +84,7 @@ function Profile() {
                 </Box>
             </Stack>
             <Box flexGrow={1}>
-                <Typography component={'h2'} variant='h5'>My Profile</Typography>
+                <Typography component={'h2'} variant='h5' mb = {2} color = {theme.palette.neutral.secondary}>{t('myProfile')}</Typography>
                 <Outlet context = {{user}} />
             </Box>
         </Stack>

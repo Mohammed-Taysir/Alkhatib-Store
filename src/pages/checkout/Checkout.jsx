@@ -7,8 +7,10 @@ import AxiosUserInstance from '../../api/AxiosUserInstance';
 import PageHeading from '../../components/page-heading/PageHeading';
 
 import image from '../../assets/checout-background.webp'
+import { useTranslation } from 'react-i18next';
 
 function Checkout() {
+  const {t} = useTranslation();
   const isSmallScreen = useMediaQuery('(max-width: 900px)');
   const theme = useTheme();
   const {register, control, handleSubmit} = useForm({});
@@ -30,46 +32,42 @@ function Checkout() {
   }
   return (
     <Box py={6}>
-      <PageHeading title={'Checkout'} description = {'Your satisfaction and security are our priority.'} image = {image} left = '20%' color = '#00E5FF'/>
+      <PageHeading title={t('CHECKOUT')} description = {t("Checkout-message")} image = {image} left = '20%' color = '#00E5FF'/>
 
       <Stack mt = {3} component={'form'} direction= {isSmallScreen? 'column': 'row'} spacing={4} onSubmit={handleSubmit(onSubmit)} >
         <Stack className='checkout-from' flexGrow={1} spacing={3}>
           <Stack direction='row' spacing={2}>
-            <TextField label='First Name' color={theme.palette.neutral.main} sx={{
+            <TextField label= {t('firstName')} color={theme.palette.neutral.main} sx={{
               '.MuiInputBase-root': {
                 borderRadius: 4
               },
               flexGrow: 1
             }} />
-            <TextField label='Last Name' color={theme.palette.neutral.main} sx={{
+            <TextField label={t('lastName')} color={theme.palette.neutral.main} sx={{
               '.MuiInputBase-root': {
                 borderRadius: 4
               },
               flexGrow: 1
             }} />
           </Stack>
-          <TextField label='Email' sx={{
+          <TextField label={t('email')} sx={{
             '.MuiInputBase-root': {
               borderRadius: 4
             },
             
           }} />
-          <TextField label='Company Name (optional)' sx={{
+          <TextField label= {t('companyName')} sx={{
             '.MuiInputBase-root': {
               borderRadius: 4
             }
           }} />
-          <TextField label='Company Name (optional)' sx={{
+          <TextField label={t('addressInfo')} sx={{
             '.MuiInputBase-root': {
               borderRadius: 4
             }
           }} />
-          <TextField label='Address Information' sx={{
-            '.MuiInputBase-root': {
-              borderRadius: 4
-            }
-          }} />
-          <TextField label='Phone' sx={{
+          
+          <TextField label={t('phone')}  sx={{
             '.MuiInputBase-root': {
               borderRadius: 4
             }
@@ -78,7 +76,7 @@ function Checkout() {
 
         <Stack bgcolor={theme.palette.favColor.main} p={3.5} borderRadius={4} spacing={3}>
           <Box>
-            <FormLabel>Your Order</FormLabel>
+            <FormLabel>{t('yourOrder')}</FormLabel>
             <Table>
               <TableHead>
                 <TableRow>
@@ -86,11 +84,11 @@ function Checkout() {
                     p: 0,
                     pt: 1,
                     fontSize: "15px"
-                  }} align='left' >Prodcut</TableCell>
+                  }} align='left' >{t('Product')}</TableCell>
                   <TableCell sx={{
                     p: 0,
                     fontSize: '15px'
-                  }} align='right'>Total</TableCell>
+                  }} align='right'>{t('Total')}</TableCell>
                 </TableRow>
               </TableHead>
               {
@@ -122,7 +120,7 @@ function Checkout() {
                     color: theme.palette.neutral.main,
                     fontWeight: 'bold'
                   }
-                } align='left'>Total Order Price</TableCell>
+                } align='left'>{t('totalOrderPrice')}</TableCell>
                 <TableCell sx={{ p: 0, pt: 2, color: theme.palette.neutral.main, fontWeight: 'bold' }} align='right'>${data.data.cartTotal}</TableCell>
               </TableRow>
             </Table>
@@ -135,7 +133,7 @@ function Checkout() {
               defaultValue={'Visa'}
               render={({ field }) => (
                 <Box>
-                  <FormLabel>Payment Method</FormLabel>
+                  <FormLabel>{t('paymentMethod')}</FormLabel>
                   <RadioGroup {...field}>
                     <FormControlLabel sx = {{
                       '.MuiTypography-root': {
@@ -150,7 +148,7 @@ function Checkout() {
                         color: theme.palette.neutral.secondary,
                       }
                      
-                    }} value = 'Visa' control={<Radio />} label = 'Visa' />
+                    }} value = 'Visa' control={<Radio />} label = {t('visa')} />
                     <FormControlLabel sx = {{
                       '.MuiTypography-root': {
                         fontSize: '14px',
@@ -165,7 +163,7 @@ function Checkout() {
                         color: theme.palette.neutral.secondary,
                       }
                 
-                    }}  value = 'Cash' control={<Radio />} label = 'Cash' />
+                    }}  value = 'Cash' control={<Radio />} label = {t('cash')} />
 
                   </RadioGroup>
                 </Box>
@@ -177,7 +175,7 @@ function Checkout() {
           <Button type = 'submit' variant='contained' size = 'large' sx = {{
             bgcolor: theme.palette.neutral.secondary,
             borderRadius: 8
-          }}>Place Order</Button>
+          }}>{t('placeOrder')}</Button>
 
         </Stack>
 
