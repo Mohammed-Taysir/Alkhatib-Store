@@ -21,6 +21,7 @@ function ProductCard({ product }) {
       ,
       position: 'relative',
       overflow: 'hidden',
+      borderRadius: 5
       
     }}>
       <Stack className = 'discount-rating'  direction = 'row' justifyContent={'space-between'} width = '100%' position={'absolute'} zIndex={1} p = {2} top = "-100%">

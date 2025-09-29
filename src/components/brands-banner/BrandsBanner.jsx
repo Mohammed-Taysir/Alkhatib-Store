@@ -20,7 +20,7 @@ function BrandsBanner() {
     <Box sx = {{overflow: "hidden"}} className = 'banner-container' py = {3}>
         <Stack direction = 'row' alignItems = 'center' className = 'brands-banner'>
         {
-            brands.map(brand =><Box key = {brand.name} component={'img'} width = {'100px'} alt = {brand.name} src = {brand.mainImageUrl} />)
+            brands?.map(brand =><Box key = {brand.name} component={'img'} width = {'100px'} alt = {brand.name} src = {brand.mainImageUrl} />)
                 
          
         }

@@ -34,10 +34,8 @@ function ProductsSection({ sectionTitle, products, isLoading }) {
         }}>
           
           {
-            products.map(product => (
-              
+            products?.map(product => (
                 <ProductCard key = {product.id} product = {product} />
-             
             ))
           }
         </Box>

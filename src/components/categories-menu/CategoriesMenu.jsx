@@ -12,8 +12,10 @@ import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useTranslation } from 'react-i18next';
+import i18n from '../../i18n';
 
 
 
@@ -52,11 +54,22 @@ function CategoriesMenu() {
           }} />
           <Typography color={theme.palette.neutral.main}>{t('Categories')}</Typography>
         </Stack>
-        <ArrowForwardIosIcon fontSize='10px' sx={{
+        {/* <ArrowForwardIosIcon fontSize='10px' sx={{
           
           rotate: isOpen && '90deg',
           transition: '0.3s rotate'
-        }} />
+        }} /> */}
+
+        {
+          i18n.dir() === 'rtl'? <ArrowBackIosIcon fontSize = '10px' sx = {{
+            rotate: isOpen && '-90deg',
+            transition: "0.3s rotate"
+          }} /> : <ArrowForwardIosIcon fontSize='10px' sx={{
+          
+            rotate: isOpen && '90deg',
+            transition: '0.3s rotate'
+          }} />
+        }
       </Stack >
 
       <Menu
@@ -81,8 +94,9 @@ function CategoriesMenu() {
         }}
       >
         {
-          isLoading ? <CircularProgress /> : categories.data.map(category => (<MenuItem key={category.id}>
+          isLoading ? <CircularProgress /> : categories?.data.map(category => (<MenuItem key={category.id}>
             <ListItemIcon>
+            {/* KeyboardArrowLeftIcon */}
               <ArrowRightAltIcon fontSize='small' />
             </ListItemIcon>
             <ListItemText>{category.name}</ListItemText>
