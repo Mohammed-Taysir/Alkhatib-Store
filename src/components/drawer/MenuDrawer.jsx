@@ -65,7 +65,7 @@ function MenuDrawer({links}) {
             </IconButton>
             <Drawer open={open} onClose={toggleDrawer(false)} sx = {{
             '.MuiPaper-root': {
-                bgcolor: theme.palette.secondary.main,
+                bgcolor: theme.palette.favColor.main,
                 width: '100%',
                 display: 'flex',
                 alignItems: 'center',
@@ -73,7 +73,12 @@ function MenuDrawer({links}) {
             }
         }}>
             <IconButton sx = {{position: 'absolute', right: 0, top: '5px'}} onClick = {toggleDrawer(false)}>
-                <CloseIcon fontSize='large' />
+                <CloseIcon fontSize='large' sx = {{
+                    ":hover": {
+                        rotate: '180deg',
+                        transition: '0.5s'
+                    }
+                }} />
             </IconButton>
                 {DrawerList}
             </Drawer>

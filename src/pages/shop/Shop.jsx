@@ -8,6 +8,8 @@ import ProductCard from '../../components/product-card/ProductCard';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import FilterListOutlinedIcon from '@mui/icons-material/FilterListOutlined';
+import FilterDrawer from './FilterDrawer';
+import Side from './Side';
 
 
 
@@ -19,13 +21,9 @@ function valuetext(value) {
 function Shop() {
   const isSmallScreen = useMediaQuery('(max-width: 900px)');
 
-  const [value, setValue] = useState([1000, 0]);
+  
 
-  const handleChange = (event, newValue) => {
-    setValue([newValue[1], newValue[0]]);
-  };
-
-  const [category, setCategory] = useState('male');
+  
 
   const theme = useTheme();
   const { data: categories, isLoading: catLoading, isError: catIsError, error: catError } = useFetch('/Customer/Categories', 'categories');
@@ -40,18 +38,9 @@ function Shop() {
     return <Typography color='error'>Error: {catError}</Typography>
   return (
     <Box py={4}>
-      {
-        isSmallScreen && <IconButton sx = {{
-          p: 1.5,
-          bgcolor: theme.palette.neutral.main,
-          color: "#fff",
-          mb: 2
-        }}>
-          <FilterListOutlinedIcon fontSize='large' />
-          </IconButton>
-      }
+      <FilterDrawer categories={categories.data} />
       <Stack direction="row" spacing={5} >
-        <Box sx={{
+        {/* <Box sx={{
           display:isSmallScreen? "none": 'flex',
           flexDirection: 'column',
           gap: 3,
@@ -214,7 +203,10 @@ function Shop() {
 
 
 
-        </Box>
+        </Box> */}
+        {
+          !isSmallScreen && <Side />
+        }
 
         <Box flexGrow={1}>
           {
