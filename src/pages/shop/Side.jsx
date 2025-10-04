@@ -9,7 +9,7 @@ function Side({products, onFilter}) {
     const isSmallScreen = useMediaQuery('(max-width: 900px)');
     const [category, setCategory] = useState('All');
     const [value, setValue] = useState([1000, 0]);
-    console.log(products)
+
 
     const handleChange = (event, newValue) => {
         setValue([newValue[1], newValue[0]]);
@@ -18,10 +18,10 @@ function Side({products, onFilter}) {
     const { data: categories, isLoading: catLoading, isError: catIsError, error: catError } = useFetch('/Customer/Categories', 'categories');
 
     const filterByPrice = () => {
-        console.log(products)
         const newProducts = products.filter(product => parseFloat(product.price) >= value[1] && parseFloat(product.price) <= value[0]);
         onFilter(newProducts);
     }
+
     return (
         <Box sx={{
             display: 'flex',

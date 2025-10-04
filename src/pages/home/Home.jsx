@@ -5,6 +5,7 @@ import useFetch from '../../custom-hook/useFetch'
 import BrandsBanner from '../../components/brands-banner/BrandsBanner';
 import MainBanner from '../../components/main-banner/MainBanner';
 import { useTranslation } from 'react-i18next';
+import Subscribe from '../../components/subscribe-section/Subscribe';
 
 function Home() {
   const {t} = useTranslation();
@@ -15,6 +16,7 @@ function Home() {
       <MainBanner />
       <BrandsBanner />
       <ProductsSection sectionTitle = {t("Featured Products")} products = {products?.data} isLoading = {isLoading} />
+      <Subscribe />
     </Box>
   )
 }
