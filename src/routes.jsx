@@ -9,7 +9,7 @@ import Shop from "./pages/shop/Shop";
 import Product from "./pages/product/Product";
 import Contact from "./pages/contact/Contact";
 import Blog from "./pages/blog/Blog";
-import About from "./pages/about/About";
+
 import AuthLayout from "./layouts/AuthLayout";
 import ForgetPassword from "./pages/forget-password/ForgetPassword";
 import ResetPassword from "./pages/reset-password/ResetPassword";
@@ -59,10 +59,7 @@ const router = createBrowserRouter([
                 path: '/blog',
                 element: <Blog />
             },
-            {
-                path: '/about',
-                element: <About />
-            },
+            
             {
                 path: '/profile',
                 element: <ProtectRouter>

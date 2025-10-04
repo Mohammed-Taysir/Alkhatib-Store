@@ -35,6 +35,7 @@ const settings = ['Profile', 'Account', 'Logout'];
 function MidBar() {
   const {t} = useTranslation();
   const theme = useTheme();
+  const isSmallScreen = useMediaQuery('(max-width: 400px)');
   const pages = [{
   page: t('Home'),
   path: '/',
@@ -48,11 +49,7 @@ function MidBar() {
   path: '/contact',
   icon: ConnectWithoutContactIcon
 },
-{
-  page: t('About'),
-  path: '/about',
-  icon: InfoIcon
-},
+
 {
   page: t("Blog"),
   path: '/blog',
@@ -66,7 +63,7 @@ function MidBar() {
           {
             useMediaQuery('(max-width: 990px)') && (<MenuDrawer links = {pages} />)
           }
-          <Link><Box component='img' src={logo} sx={{ width: 135, height: 120 }}>
+          <Link><Box component='img' src={logo} sx={{ width:!isSmallScreen? 135: 80, height: 120 }}>
           </Box></Link>
 
           {

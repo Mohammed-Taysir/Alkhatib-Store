@@ -1,5 +1,5 @@
 import { Box, CircularProgress, Divider, Stack, Typography, FormControlLabel, FormLabel, Radio, RadioGroup, useTheme, TextField, Pagination, PaginationItem, Button, useMediaQuery, IconButton } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import useFetch from '../../custom-hook/useFetch';
 import Slider from '@mui/material/Slider';
 import FormControl from '@mui/material/FormControl';
@@ -28,14 +28,23 @@ function Shop() {
   const theme = useTheme();
   const { data: categories, isLoading: catLoading, isError: catIsError, error: catError } = useFetch('/Customer/Categories', 'categories');
   const { data: products, isLoading: productsLoading, isError: proIsError, error: proError } = useFetch('/Customer/Products', 'products');
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
 
+  
+
+  useEffect(()=> {
+    if(!productsLoading && !proIsError)
+      setFilteredProducts(products?.data);
+  }, [productsLoading, proIsError, products]);
 
   if (catLoading)
     return <CircularProgress />
 
   if (catIsError)
     return <Typography color='error'>Error: {catError}</Typography>
+
+
   return (
     <Box py={4}>
       <FilterDrawer categories={categories.data} />
@@ -205,7 +214,7 @@ function Shop() {
 
         </Box> */}
         {
-          !isSmallScreen && <Side />
+          !isSmallScreen && <Side products = {filteredProducts}/>
         }
 
         <Box flexGrow={1}>
@@ -213,7 +222,7 @@ function Shop() {
             productsLoading ? <Box minHeight={'100vh'} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}><CircularProgress /></Box> :
               <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 3 }}>
                 {
-                  products?.data.map(product => (<ProductCard key={product.id} product={product} />))
+                  filteredProducts.map(product => (<ProductCard key={product.id} product={product} />))
                 }
               </Box>
 

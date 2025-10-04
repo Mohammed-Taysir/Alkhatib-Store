@@ -5,10 +5,11 @@ import useFetch from '../../custom-hook/useFetch';
 import Slider from '@mui/material/Slider';
 import FormControl from '@mui/material/FormControl';
 
-function Side() {
+function Side({products}) {
     const isSmallScreen = useMediaQuery('(max-width: 900px)');
     const [category, setCategory] = useState('All');
     const [value, setValue] = useState([1000, 0]);
+    console.log(products)
 
     const handleChange = (event, newValue) => {
         setValue([newValue[1], newValue[0]]);
