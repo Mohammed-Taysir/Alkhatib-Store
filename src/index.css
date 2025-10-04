@@ -81,3 +81,30 @@
         transform: translateX(-100%)
     }
 }
+
+
+.swiper-button-next,
+.swiper-button-prev {
+  background-color: #64748B;
+  display: none !important;
+  width: 50px !important;
+  height: 50px !important;
+
+  border-radius: 50%
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    color: white;
+    font-size: 15px !important;
+    transition: 0.3s;
+}
+
+.swiper:hover .swiper-button-next,
+.swiper:hover .swiper-button-prev {
+    display: flex !important;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: #64748B !important;
+}
