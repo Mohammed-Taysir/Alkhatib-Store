@@ -1,7 +1,7 @@
 import React from 'react'
 import AxiosUserInstance from '../../api/AxiosUserInstance'
 import { useQuery } from '@tanstack/react-query';
-import { Box, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Avatar, Box, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 import useFetch from '../../custom-hook/useFetch';
 
 function UserAvatar() {
@@ -27,20 +27,7 @@ function UserAvatar() {
     console.log(userFullName)
     return (
         <Stack direction = 'row' alignItems={'center'} spacing = {1} >
-            <Box sx = {{
-                width: '45px',
-                height: '45px',
-                borderRadius: '50%',
-                fontWeight: 400,
-                color: '#fff',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                fontSize: '18px',
-                bgcolor: theme.palette.secondary.main
-                
-                
-            }}>{userFullName?.at(0).toUpperCase()}</Box>
+            <Avatar>{userFullName?.at(0).toUpperCase()}</Avatar>
 
             {useMediaQuery('(min-width:1000px)') && <Typography color= {theme.palette.text.primary} textTransform={'capitalize'}>{userFullName}</Typography>}
         </Stack>
