@@ -108,3 +108,7 @@
 .swiper-pagination-bullet-active {
     background-color: #64748B !important;
 }
+
+.swiper-button-prev.swiper-button-disabled, .swiper-button-next.swiper-button-disabled {
+    opacity: 0 !important;
+}

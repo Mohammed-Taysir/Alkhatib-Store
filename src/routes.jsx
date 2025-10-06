@@ -18,6 +18,8 @@ import Profile from "./pages/profile/Profile";
 import Info from "./pages/profile/Info";
 import Orders from "./pages/profile/Orders";
 import Settings from "./pages/profile/Settings";
+import OrderTypeContextProvider from "./context/OrderTypeContext";
+import OrderContextProvider from "./context/OrderContext";
 
 
 
@@ -27,10 +29,10 @@ const router = createBrowserRouter([
         element: <MainLayout />,
         children: [
             {
-                index:true,
+                index: true,
                 element: <Home />
             },
-            
+
             {
                 path: '/cart',
                 element: <ProtectRouter>
@@ -44,9 +46,13 @@ const router = createBrowserRouter([
                 </ProtectRouter>
             },
             {
-                path: '/shop',
-                element: <Shop />
-            }, 
+                path: '/shop/:page',
+                element: <OrderContextProvider>
+                    <OrderTypeContextProvider>
+                        <Shop />
+                    </OrderTypeContextProvider>
+                </OrderContextProvider>
+            },
             {
                 path: '/product/:id',
                 element: <Product />
@@ -59,7 +65,7 @@ const router = createBrowserRouter([
                 path: '/blog',
                 element: <Blog />
             },
-            
+
             {
                 path: '/profile',
                 element: <ProtectRouter>
@@ -69,11 +75,11 @@ const router = createBrowserRouter([
                     {
                         index: true,
                         element: <Info />
-                    }, 
+                    },
                     {
                         path: 'orders',
                         element: <Orders />
-                    }, 
+                    },
                     {
                         path: 'settings',
                         element: <Settings />
@@ -97,7 +103,7 @@ const router = createBrowserRouter([
             {
                 path: '/auth/forget',
                 element: <ForgetPassword />
-            }, 
+            },
             {
                 path: '/auth/reset',
                 element: <ResetPassword />

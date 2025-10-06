@@ -2,11 +2,15 @@ import { Box, Button, CircularProgress, Grid, Stack, useTheme } from '@mui/mater
 import React from 'react'
 import MainTitle from '../../main-title/MainTitle'
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination } from 'swiper/modules';
-// import Swiper and modules styles
+
+// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+
+
+
+// import required modules
+import { Navigation } from 'swiper/modules';
 import ProductCard from '../../product-card/ProductCard';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -19,7 +23,7 @@ function ProductsSection({ sectionTitle, products, isLoading }) {
   if (isLoading)
     return <CircularProgress />
   return (
-    <Box py={10} component={'section'}>
+    <Box  component={'section'} pb = {4}>
       <Stack alignItems={'center'}>
         <MainTitle sectionTitle={sectionTitle} />
       </Stack>
@@ -27,26 +31,40 @@ function ProductsSection({ sectionTitle, products, isLoading }) {
 
       <Box pt = {4}>
         
-        <Box sx = {{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          gap: 4
-        }}>
-          
-          {
-            products?.map(product => (
-                <ProductCard key = {product.id} product = {product} />
-            ))
-          }
-        </Box>
+        
+
+<Swiper style = {{padding: "20px 0"}} navigation={true} modules={[Navigation]} className="mySwiper"  spaceBetween={25}  
+breakpoints={{
+
+  300: {
+    slidesPerView: 1.3,
+    spaceBetween: 15,
+  },
+  480: {
+    slidesPerView: 1.6
+  },
+  768: {
+    slidesPerView: 2.4,
+    spaceBetween: 30,
+  },
+  1024: {
+    slidesPerView: 3.4,
+    spaceBetween: 40,
+  },
+}}
+>
+        {
+          products.length > 0 && products.map(product => (
+            <SwiperSlide key = {product.id} >
+              <ProductCard product={product}  />
+            </SwiperSlide>
+          ))
+        }
+      </Swiper>
 
       
      
-        <Box textAlign={'center'} mt = {3}>
-          <Button variant='contained' sx = {{
-            bgcolor: theme.palette.neutral.secondary
-          }} size='large'><Link to = '/shop' style = {{textDecoration: 'none', color: '#fff'}}>{t("More")}</Link></Button>
-        </Box>
+        
       </Box>
 
 

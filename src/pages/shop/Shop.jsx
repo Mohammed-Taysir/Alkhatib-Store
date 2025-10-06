@@ -1,5 +1,5 @@
 import { Box, CircularProgress, Divider, Stack, Typography, FormControlLabel, FormLabel, Radio, RadioGroup, useTheme, TextField, Pagination, PaginationItem, Button, useMediaQuery, IconButton } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import useFetch from '../../custom-hook/useFetch';
 import Slider from '@mui/material/Slider';
 import FormControl from '@mui/material/FormControl';
@@ -10,6 +10,11 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import FilterListOutlinedIcon from '@mui/icons-material/FilterListOutlined';
 import FilterDrawer from './FilterDrawer';
 import Side from './Side';
+import  { OrderTypeContext } from '../../context/OrderTypeContext';
+import Sorts from './Sorts';
+import { OrderContext } from '../../context/OrderContext';
+import { useParams } from 'react-router-dom';
+
 
 
 
@@ -20,22 +25,28 @@ function valuetext(value) {
 
 function Shop() {
   const isSmallScreen = useMediaQuery('(max-width: 900px)');
+  const {orderType, setOrderType} = useContext(OrderTypeContext);
+  const {order, setOrder} = useContext(OrderContext);
+  console.log(order, orderType)
+
+  const {page} = useParams();
+
+  const limit = 9;
+  const skip = (page - 1) * limit;
+
 
   
-
-  
-
   const theme = useTheme();
   const { data: categories, isLoading: catLoading, isError: catIsError, error: catError } = useFetch('/Customer/Categories', 'categories');
-  const { data: products, isLoading: productsLoading, isError: proIsError, error: proError } = useFetch('/Customer/Products', 'products');
+  const { data: products, isLoading: productsLoading, isError: proIsError, error: proError } = useFetch(`/Customer/products?limit=${limit}&skip=${skip}&sortBy=${orderType}&sortOrder=${order}`, 'products');
   const [filteredProducts, setFilteredProducts] = useState([]);
 
-
+  console.log(products);
   
 
   useEffect(()=> {
     if(!productsLoading && !proIsError)
-      setFilteredProducts(products?.data);
+      setFilteredProducts(products?.data.data);
   }, [productsLoading, proIsError, products]);
 
   if (catLoading)
@@ -48,18 +59,21 @@ function Shop() {
   return (
     <Box py={4}>
       <FilterDrawer categories={categories.data} products = {filteredProducts} onFilter = {setFilteredProducts}  />
+      <Sorts />
+
       <Stack direction="row" spacing={5} >
 
         {
           !isSmallScreen && <Side products = {filteredProducts} onFilter = {setFilteredProducts}/>
         }
 
+  
         <Box flexGrow={1}>
           {
             productsLoading ? <Box minHeight={'100vh'} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}><CircularProgress /></Box> :
-              <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 3 }}>
+              <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 3 }}>
                 {
-                  filteredProducts.map(product => (<ProductCard key={product.id} product={product} />))
+                 filteredProducts.length > 0 && filteredProducts.map(product => (<ProductCard key={product.id} product={product} />))
                 }
               </Box>
 
@@ -80,6 +94,7 @@ function Shop() {
             </Stack>
           </Box>
         </Box>
+
       </Stack>
     </Box>
   )

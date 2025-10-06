@@ -10,12 +10,13 @@ import Subscribe from '../../components/subscribe-section/Subscribe';
 function Home() {
   const {t} = useTranslation();
   const {data:products, isLoading, isError, error} = useFetch('/Customer/Products', 'products');
+  console.log(products);
   console.log(products)
   return (
     <Box component={'main'}>
       <MainBanner />
       <BrandsBanner />
-      <ProductsSection sectionTitle = {t("Featured Products")} products = {products?.data} isLoading = {isLoading} />
+      <ProductsSection sectionTitle = {t("Featured Products")} products = {products?.data?.data} isLoading = {isLoading} />
       <Subscribe />
     </Box>
   )

@@ -2,7 +2,9 @@ import React from 'react'
 
 function Blog() {
   return (
-    <div>Blog</div>
+    <div style = {{minHeight: '100vh', display: 'flex', justifyContent: "center", alignItems: 'center'}}>
+      Blog
+    </div>
   )
 }
 

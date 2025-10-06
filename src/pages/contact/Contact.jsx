@@ -15,7 +15,8 @@ function Contact() {
       <Box sx={{
         display: 'flex',
         flexDirection: isSmallScreen ? "column" : 'row',
-        justifyContent: "space-between"
+        justifyContent: "space-between",
+        alignItems: 'center'
       }}>
         <Box>
           <Typography component={'h3'} variant='h5' sx={{

@@ -42,7 +42,7 @@ function MidBar() {
   icon: HomeIcon
 }, {
   page: t('Products'),
-  path: '/shop',
+  path: '/shop/1',
   icon: StoreIcon
 }, {
   page: t('Contact'),

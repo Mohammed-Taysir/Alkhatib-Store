@@ -41,7 +41,7 @@ function Subscribe() {
               borderRadius: 4,
               height: isSmallScreen && '40px',
             }
-            }} label = "Subscribe" />
+            }} label = "Email" />
             <Button variant='outlined' sx = {{height:!isSmallScreen? '53.3px': "40px", bgcolor: theme.palette.neutral.secondary, color: '#Fff', textTransform: "capitalize", borderRadius: '15px'}}>Subscribe</Button>
             </Stack>
           </Box>
