@@ -71,7 +71,7 @@ function Reviews({ product }) {
             <Avatar>{review.fullName[0].toUpperCase()}</Avatar>
             <Stack spacing={1}>
               <Rating name="disabled" value={review.rate} readOnly />
-              <Typography color={theme.palette.neutral.main}>{review.fullName}</Typography>
+              <Typography fontSize = "0.9rem" color={theme.palette.neutral.main}>{review.fullName}</Typography>
               <Typography>{review.comment}</Typography>
             </Stack>
           </Box>
