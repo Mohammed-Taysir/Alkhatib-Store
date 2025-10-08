@@ -51,7 +51,7 @@ function MainBanner() {
                   fontSize: isSmallScreen && "20px"
                 }} align = 'center' fontWeight = 'bold' component={'h1'} variant='h4' color = "#fff">Discover The Perfect Products, Quality, And Style</Typography>
                 <Typography color = {theme.palette.favColor.main}>Alkhatib Store The Joy of Shopping</Typography>
-                <Button component = {Link} to = '/shop' variant='contained' size = 'large' sx = {{bgcolor: theme.palette.neutral.secondary, textTransform: 'capitalize'}}>Shop Now</Button>
+                <Button component = {Link} to = '/shop/1' variant='contained' size = 'large' sx = {{bgcolor: theme.palette.neutral.secondary, textTransform: 'capitalize'}}>Shop Now</Button>
               </Box>
             </SwiperSlide>
           ))

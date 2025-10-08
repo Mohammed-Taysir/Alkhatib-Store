@@ -20,13 +20,14 @@ import { useTranslation } from 'react-i18next';
 function ProductsSection({ sectionTitle, products, isLoading }) {
   const {t} = useTranslation();
   const theme = useTheme();
-  if (isLoading)
-    return <CircularProgress />
+  // if (isLoading)
+  //   return <CircularProgress />
   return (
     <Box  component={'section'} pb = {4}>
       <Stack alignItems={'center'}>
         <MainTitle sectionTitle={sectionTitle} />
       </Stack>
+      {isLoading? <Box display = 'flex' alignItems={'center'} justifyContent={'center'} height = '400px' ><CircularProgress /></Box>: null}
 
 
       <Box pt = {4}>
@@ -54,7 +55,7 @@ breakpoints={{
 }}
 >
         {
-          products.length > 0 && products.map(product => (
+          products && products.map(product => (
             <SwiperSlide key = {product.id} >
               <ProductCard product={product}  />
             </SwiperSlide>

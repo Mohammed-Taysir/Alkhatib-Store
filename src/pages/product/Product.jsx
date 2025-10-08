@@ -4,28 +4,34 @@ import useFetch from '../../custom-hook/useFetch';
 import { Box, CircularProgress, Container, Stack, useMediaQuery } from '@mui/material';
 import ImgsSlider from './ImgsSlider';
 import Details from './Details';
+import Reviews from './Reviews';
+import SpecificationTabs from './SpecificationTabs';
 
 function Product() {
   const {id} = useParams();
+  console.log(id)
 
   const {data, isLoading, isError, error} = useFetch(`/Customer/Products/${id}`, 'product', false, id);
 
   const product = data?.data;
+  console.log(product)
+  
   const isSmallScreen = useMediaQuery('(max-width: 850px)');
-  if(isLoading)
-    return <CircularProgress />
 
+  let message = '';
   if(isError)
-    return <p>Error : {error.message}</p>
+    message =  <p>Error : {error.message}</p>
   
 
   return (
     <Box py = {5}>
       <Container maxWidth = 'lg'>
-        <Stack direction = { isSmallScreen? 'column': 'row'} spacing={4} >
+     
+        {isLoading? <Box height={'250px'} display={'flex'} justifyContent={'center'} alignItems={"center"}><CircularProgress/></Box>: <Stack direction = { isSmallScreen? 'column': 'row'} spacing={4} >
           <ImgsSlider product = {product} />
           <Details  sx = {{flexGrow: 1}} product = {product} />
-        </Stack>
+        </Stack>}
+        <SpecificationTabs product={product} />
       </Container>
     </Box>
   )

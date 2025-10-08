@@ -14,6 +14,7 @@ import  { OrderTypeContext } from '../../context/OrderTypeContext';
 import Sorts from './Sorts';
 import { OrderContext } from '../../context/OrderContext';
 import { useParams } from 'react-router-dom';
+import { useQueryClient } from '@tanstack/react-query';
 
 
 
@@ -27,22 +28,30 @@ function Shop() {
   const isSmallScreen = useMediaQuery('(max-width: 900px)');
   const {orderType, setOrderType} = useContext(OrderTypeContext);
   const {order, setOrder} = useContext(OrderContext);
-  console.log(order, orderType)
+  const queryClient = useQueryClient();
 
   const {page} = useParams();
 
+  const [pageNum, setPageNum] = useState(page);
+
   const limit = 9;
-  const skip = (page - 1) * limit;
+  const skip = (pageNum - 1) * limit;
 
 
   
   const theme = useTheme();
   const { data: categories, isLoading: catLoading, isError: catIsError, error: catError } = useFetch('/Customer/Categories', 'categories');
-  const { data: products, isLoading: productsLoading, isError: proIsError, error: proError } = useFetch(`/Customer/products?limit=${limit}&skip=${skip}&sortBy=${orderType}&sortOrder=${order}`, 'products');
+  const { data: products, isLoading: productsLoading, isError: proIsError, error: proError } = useFetch(`/Customer/products?limit=${limit}&skip=${skip}&sortBy=${orderType}&sortOrder=${order}`, 'shop');
   const [filteredProducts, setFilteredProducts] = useState([]);
 
-  console.log(products);
+  const totalProducts = products?.data.totalCount;
+
+  const numOfPages = Math.ceil(totalProducts / limit);
+
   
+  useEffect(()=> {
+    queryClient.invalidateQueries(['shop']);
+  }, [pageNum, order, orderType]);
 
   useEffect(()=> {
     if(!productsLoading && !proIsError)
@@ -50,11 +59,16 @@ function Shop() {
   }, [productsLoading, proIsError, products]);
 
   if (catLoading)
-    return <CircularProgress />
+    return <Box display={'flex'} justifyContent={'center'} alignItems={'center'} height = '100vh'><CircularProgress /></Box>
 
   if (catIsError)
     return <Typography color='error'>Error: {catError}</Typography>
 
+  const handleChange = (event, value) => {
+    setPageNum(value);
+    queryClient.invalidateQueries(['shop']);
+    
+  }
 
   return (
     <Box py={4}>
@@ -81,9 +95,10 @@ function Shop() {
           <Box pt={4} display={'flex'} justifyContent={'center'} slots={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}>
             <Stack spacing={2}>
               <Pagination
-                count={10}
+                count={numOfPages}
                 size='large'
                 color='secondary'
+                onChange={handleChange}
                 renderItem={(item) => (
                   <PaginationItem
                     slots={{ previous: ArrowForwardIcon, next: ArrowBackIcon }}

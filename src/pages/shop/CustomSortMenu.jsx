@@ -22,7 +22,7 @@ function CustomSortMenu({options, title,  onSet}) {
         setSelectedIndex(index);
         setAnchorEl(null);
         onSet(options[index]);
-        queryClient.invalidateQueries(['products']);
+      
     };
 
     const handleClose = () => {

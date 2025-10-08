@@ -9,6 +9,8 @@ function ImgsSlider({ product }) {
         '/img-3.jpg'
     ];
 
+    console.log(product)
+
     const [active, setActive] = useState(product.mainImageUrl);
     const theme = useTheme();
     const isSmallScreen = useMediaQuery('(max-width: 778px)');

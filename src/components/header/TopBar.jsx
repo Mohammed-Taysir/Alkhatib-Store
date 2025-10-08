@@ -1,4 +1,4 @@
-import { Box, Container, IconButton, Stack, Typography } from '@mui/material'
+import { Box, Container, IconButton, Stack, Typography, useMediaQuery } from '@mui/material'
 
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -31,6 +31,7 @@ function SimpleListMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [selectedIndex, setSelectedIndex] = React.useState(1);
   const open = Boolean(anchorEl);
+
 
   
 
@@ -99,6 +100,7 @@ function SimpleListMenu() {
   function TopBar() {
     const {mode, toggleMode} = useContext(ThemeContext)
     const {t} = useTranslation();
+    const isSmallScreen = useMediaQuery("(max-width: 500px)");
     return (
       <Box bgcolor={'#2b3445'} sx = {{
         borderBottomLeftRadius: 6,
@@ -135,17 +137,19 @@ function SimpleListMenu() {
 
               <SimpleListMenu />
               
-              <FacebookIcon sx={{
-                color: '#fff'
-              }} fontSize='small' />
-
-              <InstagramIcon sx={{
-                color: '#fff'
-              }} fontSize='small' />
-
-              <LinkedInIcon sx={{
-                color: '#fff'
-              }} fontSize='small' />
+              {
+                isSmallScreen? null: <><FacebookIcon sx={{
+                  color: '#fff'
+                }} fontSize='small' />
+  
+                <InstagramIcon sx={{
+                  color: '#fff'
+                }} fontSize='small' />
+  
+                <LinkedInIcon sx={{
+                  color: '#fff'
+                }} fontSize='small' /></>
+              }
 
 
             </Stack>

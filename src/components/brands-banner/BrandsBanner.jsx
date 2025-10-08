@@ -7,8 +7,8 @@ import "swiper/css";
 
 function BrandsBanner() {
     const {data, isLoading, isError, error} = useFetch('/Customer/Brands', 'brands');
-    if(isLoading)
-        return <CircularProgress />
+    // if(isLoading)
+    //     return <CircularProgress />
 
     if(isError) 
         return <Typography>Error: {error.message}</Typography>
@@ -18,9 +18,10 @@ function BrandsBanner() {
 
   return (
     <Box sx = {{overflow: "hidden"}} className = 'banner-container' py = {3}>
+      {isLoading? <Box height={'100px'} display={'flex'} justifyContent={'center'} alignItems = 'center'><CircularProgress /></Box>: null}
         <Stack direction = 'row' alignItems = 'center' className = 'brands-banner'>
         {
-           brands.length > 0 && brands?.map(brand =><Box key = {brand.name} component={'img'} width = {'100px'} alt = {brand.name} src = {brand.mainImageUrl} />)
+           brands && brands?.map(brand =><Box key = {brand.name} component={'img'} width = {'100px'} alt = {brand.name} src = {brand.mainImageUrl} />)
                 
          
         }
