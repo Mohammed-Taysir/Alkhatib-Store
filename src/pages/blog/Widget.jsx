@@ -8,7 +8,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 function Widget({ blogs }) {
     const theme = useTheme();
     return (
-        <Box>
+        <Box component={'aside'}>
             <Box>
                 <Typography fontWeight='bold'>Post Widget</Typography>
                 <Stack spacing={3} py={3}>
@@ -35,39 +35,51 @@ function Widget({ blogs }) {
             <Box>
                 <Typography fontWeight={'bold'}>Social Media Widget</Typography>
                 <Stack spacing={3} py={3}>
-                    <Box display={'flex'} justifyContent={'space-between'} alignItems = {'center'} bgcolor = {theme.palette.favColor.main} px = {2} py = {1} borderRadius={8}>
+                    <Box display={'flex'} gap = {2} alignItems={'center'} bgcolor={theme.palette.favColor.main} px={2} py={1} borderRadius={8}>
                         <Avatar sx={{ bgcolor: theme.palette.neutral.secondary }}><FacebookIcon /></Avatar>
-                        <Typography color = {theme.palette.neutral.main} sx = {{
-                            ":hover": {
-                                cursor: 'pointer'
-                            }
-                        }}>Follow</Typography>
+                        <Box display={'flex'} alignItems={'center'} justifyContent={'space-between'} width = "100%">
+                            <Typography fontSize={'0.9rem'} fontWeight = 'bold' color = {theme.palette.neutral.secondary}>Facebook</Typography>
+                            <Typography color={"#fff"} fontSize = '0.9rem' fontWeight = "bold" sx={{
+                                ":hover": {
+                                    cursor: 'pointer'
+                                }
+                            }}>Follow</Typography>
+                        </Box>
                     </Box>
-                    <Box display={'flex'} justifyContent={'space-between'} alignItems = {'center'} bgcolor = {theme.palette.favColor.main} px = {2} py = {1} borderRadius={8}>
+                    <Box display={'flex'} gap = {2} alignItems={'center'} bgcolor={theme.palette.favColor.main} px={2} py={1} borderRadius={8}>
                         <Avatar sx={{ bgcolor: theme.palette.neutral.secondary }}><InstagramIcon /></Avatar>
-                        <Typography color = {theme.palette.neutral.main} sx = {{
-                            ":hover": {
-                                cursor: 'pointer'
-                            }
-                        }}>Follow</Typography>
+                        <Box display={'flex'} alignItems={'center'} justifyContent={'space-between'} width = "100%">
+                            <Typography fontSize={'0.9rem'} fontWeight = 'bold' color = {theme.palette.neutral.secondary}>Facebook</Typography>
+                            <Typography color={"#fff"} fontSize = '0.9rem' fontWeight = "bold" sx={{
+                                ":hover": {
+                                    cursor: 'pointer'
+                                }
+                            }}>Follow</Typography>
+                        </Box>
                     </Box>
-                    <Box display={'flex'} justifyContent={'space-between'} alignItems = {'center'} bgcolor = {theme.palette.favColor.main} px = {2} py = {1} borderRadius={8}>
+                    <Box display={'flex'} gap = {2} alignItems={'center'} bgcolor={theme.palette.favColor.main} px={2} py={1} borderRadius={8}>
                         <Avatar sx={{ bgcolor: theme.palette.neutral.secondary }}><YouTubeIcon /></Avatar>
-                        <Typography color = {theme.palette.neutral.main} sx = {{
-                            ":hover": {
-                                cursor: 'pointer'
-                            }
-                        }}>Follow</Typography>
+                        <Box display={'flex'} alignItems={'center'} justifyContent={'space-between'} width = "100%">
+                            <Typography fontSize={'0.9rem'} fontWeight = 'bold' color = {theme.palette.neutral.secondary}>Facebook</Typography>
+                            <Typography color={"#fff"} fontSize = '0.9rem' fontWeight = "bold" sx={{
+                                ":hover": {
+                                    cursor: 'pointer'
+                                }
+                            }}>Follow</Typography>
+                        </Box>
                     </Box>
-                    <Box display={'flex'} justifyContent={'space-between'} alignItems = {'center'} bgcolor = {theme.palette.favColor.main} px = {2} py = {1} borderRadius={8}>
+                    <Box display={'flex'} gap = {2} alignItems={'center'} bgcolor={theme.palette.favColor.main} px={2} py={1} borderRadius={8}>
                         <Avatar sx={{ bgcolor: theme.palette.neutral.secondary }}><LinkedInIcon /></Avatar>
-                        <Typography color = {theme.palette.neutral.main} sx = {{
-                            ":hover": {
-                                cursor: 'pointer'
-                            }
-                        }}>Follow</Typography>
+                        <Box display={'flex'} alignItems={'center'} justifyContent={'space-between'} width = "100%">
+                            <Typography fontSize={'0.9rem'} fontWeight = 'bold' color = {theme.palette.neutral.secondary}>Facebook</Typography>
+                            <Typography color={"#fff"} fontSize = '0.9rem' fontWeight = "bold" sx={{
+                                ":hover": {
+                                    cursor: 'pointer'
+                                }
+                            }}>Follow</Typography>
+                        </Box>
                     </Box>
-                    
+
 
                 </Stack>
             </Box>

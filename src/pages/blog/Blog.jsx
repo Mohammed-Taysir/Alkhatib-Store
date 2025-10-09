@@ -1,6 +1,7 @@
 import { Box, Button, Card, CardContent, CardMedia, Typography, useMediaQuery, useTheme } from '@mui/material'
 import React from 'react'
 import Widget from './Widget';
+import { Link } from 'react-router-dom';
 const blogs = [
   {
     id: "1",
@@ -71,7 +72,7 @@ function Blog() {
   return (
     <Box py = {4}>
       <Box display = 'flex' gap = {8} flexDirection={isSmallScreen ? "column": "row"}>
-        <Box display={'flex'} flexDirection={'column'} gap = {3} flexGrow = {1}>
+        <Box display={'flex'} flexDirection={'column'} gap = {3} width = {!isSmallScreen? "80%": "100%"}>
           {
             blogs.map(blog => (
               <Card key = {blog.id} sx = {{borderRadius: 4}}>
@@ -86,11 +87,16 @@ function Blog() {
                   gap: 2,
                   alignItems: 'flex-start'
                 }}>
-                  <Typography component={'h3'} variant = 'h4'>{blog.title}</Typography>
+                  <Typography component={'h3'} variant = 'h4' sx = {{
+                    ":hover": {
+                      textDecoration: 'underline',
+                      cursor: 'pointer'
+                    }
+                  }} >{blog.title}</Typography>
                   <Typography>{blog.shortDescription}</Typography>
                   <Button variant='contained' sx = {{
                     bgcolor: theme.palette.neutral.secondary 
-                  }}>More</Button>
+                  }} component = {Link} to = {`/blog-details/${blog.id}`}>More</Button>
                 </CardContent>
 
               </Card>

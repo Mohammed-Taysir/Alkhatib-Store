@@ -20,6 +20,7 @@ import Orders from "./pages/profile/Orders";
 import Settings from "./pages/profile/Settings";
 import OrderTypeContextProvider from "./context/OrderTypeContext";
 import OrderContextProvider from "./context/OrderContext";
+import BlogDetails from "./pages/blog-details/BlogDetails";
 
 
 
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
             {
                 path: '/blog',
                 element: <Blog />
+            },
+            {
+                path: '/blog-details/:id',
+                element: <BlogDetails />
             },
 
             {
