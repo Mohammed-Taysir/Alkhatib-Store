@@ -31,8 +31,9 @@ function Login() {
       
       if(response.status === 200)
       {
-        localStorage.setItem('userToken', response.data.token);
         setIsLoggedin(true);
+        localStorage.setItem('userToken', response.data.token);
+        
         navigate('/');
       }
     } catch (error) {
