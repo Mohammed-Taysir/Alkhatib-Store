@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardContent, CardHeader, CircularProgress, Link, TextField, Typography, useTheme } from '@mui/material'
+import { Box, Button, Card, CardContent, CardHeader, CircularProgress, IconButton, Link, TextField, Typography, useTheme } from '@mui/material'
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form';
@@ -8,6 +8,8 @@ import axios from 'axios';
 import { Bounce, toast } from 'react-toastify';
 import LoginSchema from '../../validations/LoginSchema';
 import { LoginContext } from '../../context/LoginContext';
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 function Login() {
   const theme = useTheme();
@@ -15,31 +17,32 @@ function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const [serverError, setServerError] = useState('');
 
+  const [isVisible, setIsVisible] = useState(false);
+
   const navigate = useNavigate();
 
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(LoginSchema)
   })
 
-  const {isLoggedin, setIsLoggedin} = useContext(LoginContext);
+  const { isLoggedin, setIsLoggedin } = useContext(LoginContext);
 
   const onSubmit = async (data) => {
     try {
       setIsLoading(true);
 
       const response = await axios.post('https://kashop1.runasp.net/api/Identity/Account/Login', data);
-      
-      if(response.status === 200)
-      {
+
+      if (response.status === 200) {
         setIsLoggedin(true);
         localStorage.setItem('userToken', response.data.token);
-        
+
         navigate('/');
       }
     } catch (error) {
-        console.log(error)
-        setServerError(error.response?.data?.message || "UnExpected Error!");
-      
+      console.log(error)
+      setServerError(error.response?.data?.message || "UnExpected Error!");
+
     } finally {
       setIsLoading(false);
     }
@@ -59,8 +62,8 @@ function Login() {
             }
 
           }}>
-         
-            
+
+
             <TextField {...register("email")} variant='outlined' label='Email' sx={{
               width: `100%`, borderRadius: 5,
               '.MuiInputBase-root': {
@@ -69,22 +72,36 @@ function Login() {
             }}
               error={errors.email}
               helperText={errors.email?.message} />
-            
-            <TextField {...register("password")} variant='outlined' label='Password' sx={{
-              width: `100%`, borderRadius: 5,
-              '.MuiInputBase-root': {
-                borderRadius: 2
-              }
-            }}
-              error={errors.password}
-              helperText={errors.password?.message} />
-              {serverError && (<Typography color = 'error'>{serverError}</Typography>)}
-            <Button variant='contained' size='large' type='submit' sx = {{
+
+            <Box position={'relative'}>
+              <TextField {...register("password")} type= {isVisible? 'text': 'password'} variant='outlined' label='Password' sx={{
+                width: `100%`, borderRadius: 5,
+                '.MuiInputBase-root': {
+                  borderRadius: 2
+                }
+              }}
+                error={errors.password}
+                helperText={errors.password?.message} />
+              <IconButton sx={{
+                position: "absolute",
+                top: '50%',
+                transform: 'translateY(-50%)',
+                right: 6,
+              }} onClick={()=> {
+                setIsVisible(!isVisible)
+              }}>
+                {
+                  !isVisible ? <RemoveRedEyeIcon /> : <VisibilityOffIcon />
+                }
+              </IconButton>
+            </Box>
+            {serverError && (<Typography color='error'>{serverError}</Typography>)}
+            <Button variant='contained' size='large' type='submit' sx={{
               bgcolor: theme.palette.neutral.secondary
-            }} disabled = {isLoading} >
-              {isLoading? <CircularProgress />: 'Login'}
+            }} disabled={isLoading} >
+              {isLoading ? <CircularProgress /> : 'Login'}
             </Button>
-            <Box sx = {{
+            <Box sx={{
               p: '10px',
               bgcolor: theme.palette.favColor.main,
               borderRadius: "4px"

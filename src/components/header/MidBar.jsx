@@ -28,6 +28,7 @@ import InfoIcon from '@mui/icons-material/Info';
 import BookIcon from '@mui/icons-material/Book';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import Logo from '../logo/Logo';
 
 
 const settings = ['Profile', 'Account', 'Logout'];
@@ -63,8 +64,7 @@ function MidBar() {
           {
             useMediaQuery('(max-width: 990px)') && (<MenuDrawer links = {pages} />)
           }
-          <Link><Box component='img' src={logo} sx={{ width:!isSmallScreen? 135: 80, height: 120 }}>
-          </Box></Link>
+          <Logo />
 
           {
             useMediaQuery('(min-width: 990px)') && <Stack direction={'row'} spacing={5} alignItems='center'>

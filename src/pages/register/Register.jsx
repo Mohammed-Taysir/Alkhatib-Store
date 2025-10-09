@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardContent, CardHeader, CircularProgress, Link, TextField, Typography, useTheme } from '@mui/material'
+import { Box, Button, Card, CardContent, CardHeader, CircularProgress, IconButton, Link, TextField, Typography, useTheme } from '@mui/material'
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
@@ -6,12 +6,15 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import RegisterSchema from '../../validations/RegisterSchema';
 import axios from 'axios';
 import { Bounce, toast } from 'react-toastify';
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 function Register() {
   const theme = useTheme();
 
   const [isLoading, setIsLoading] = useState(false);
   const [serverError, setServerError] = useState('');
+  const [isVisible, setIsVisible] = useState(false);
 
   const navigate = useNavigate();
 
@@ -24,7 +27,7 @@ function Register() {
       setIsLoading(true);
 
       const response = await axios.post('https://kashop1.runasp.net/api/Identity/Account/Register', data);
-      
+
       if (response.status === 200) {
         toast.success(`Your account has been created successfully.  
 Please check your email to confirm your registration.`, {
@@ -38,11 +41,11 @@ Please check your email to confirm your registration.`, {
           theme: "light",
           transition: Bounce,
         });
-        
+
         navigate('/auth/');
       }
     } catch (error) {
-      
+
       setServerError(error.response?.data?.message || "UnExpected Error!");
 
       toast.error(serverError, {
@@ -62,7 +65,7 @@ Please check your email to confirm your registration.`, {
   }
 
   return (
-    <Box component='form' onSubmit={handleSubmit(onSubmit)} width='100%' display='flex' justifyContent={'center'} >
+    <Box component='form' onSubmit={handleSubmit(onSubmit)} width='100%' display='flex' justifyContent={'center'} bgcolor = {theme.palette.favColor.main} pb = {4} >
       <Card sx={{ width: { xs: '100%', sm: 450 }, borderRadius: 6 }}>
         <CardContent>
           <Box>
@@ -109,18 +112,32 @@ Please check your email to confirm your registration.`, {
               error={errors.phoneNumber}
               helperText={errors.phoneNumber?.message}
             />
-            <TextField {...register("password")} variant='outlined' label='Password' sx={{
-              width: `100%`, borderRadius: 5,
-              '.MuiInputBase-root': {
-                borderRadius: 2
-              }
-            }}
-              error={errors.password}
-              helperText={errors.password?.message} />
-            <Button variant='contained' size='large' type='submit' sx = {{
+            <Box position={'relative'}>
+              <TextField {...register("password")} type={isVisible ? 'text' : 'password'} variant='outlined' label='Password' sx={{
+                width: `100%`, borderRadius: 5,
+                '.MuiInputBase-root': {
+                  borderRadius: 2
+                }
+              }}
+                error={errors.password}
+                helperText={errors.password?.message} />
+              <IconButton sx={{
+                position: "absolute",
+                top: '50%',
+                transform: 'translateY(-50%)',
+                right: 6,
+              }} onClick={() => {
+                setIsVisible(!isVisible)
+              }}>
+                {
+                  !isVisible ? <RemoveRedEyeIcon /> : <VisibilityOffIcon />
+                }
+              </IconButton>
+            </Box>
+            <Button variant='contained' size='large' type='submit' sx={{
               bgcolor: theme.palette.neutral.secondary
-            }} disabled = {isLoading} >
-              {isLoading? <CircularProgress />: 'Sign Up'}
+            }} disabled={isLoading} >
+              {isLoading ? <CircularProgress /> : 'Sign Up'}
             </Button>
             <Typography textAlign={'center'} fontSize='14px' color={theme.palette.neutral.main}>Already Have An Account <Link component={RouterLink} to='/auth/'>Login</Link></Typography>
 

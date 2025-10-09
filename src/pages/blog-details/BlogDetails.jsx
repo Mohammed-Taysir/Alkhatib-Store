@@ -95,7 +95,7 @@ function BlogDetails() {
                         width: '100%',
                         my: 2,
                         borderRadius: 4
-                    }} />
+                    }} alt = {blog.title} />
                     <Typography fontSize = "0.9rem" sx = {{lineHeight: '1.7'}}>{blog.description}</Typography>
                 </Box>
                 <Box flexGrow={1}>
