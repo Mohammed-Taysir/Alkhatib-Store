@@ -9,6 +9,7 @@ import axios from 'axios';
 import { Bounce, toast } from 'react-toastify';
 import SendIcon from '@mui/icons-material/Send';
 import ForgetSchema from '../../validations/ForgetSchema';
+import AxiosInstance from '../../api/AxiosInstance';
 
 function ForgetPassword() {
     const theme = useTheme();
@@ -23,15 +24,18 @@ function ForgetPassword() {
     })
 
     const onSubmit = async (data) => {
+        console.log(data)
        
         try {
             setIsLoading(true);
 
-            const response = await axios.post('https://kashop1.runasp.net/api/Identity/Account/forgot-password', data);
+            const response = await AxiosInstance.post('/Identity/Account/forgot-password', data);
+           
 
             if (response.status === 200)
                 navigate('/auth/reset')
         } catch (error) {
+            console.log(error)
             setServerError(error.response?.data?.message || "UnExpected Error!");
         } finally {
             setIsLoading(false);
