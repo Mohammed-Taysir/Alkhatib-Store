@@ -3,7 +3,7 @@ import React from 'react'
 import StarIcon from '@mui/icons-material/Star';
 import { Link as RouterLink } from 'react-router-dom';
 
-function ProductCard({ product }) {
+function ProductCard({ product}) {
   const theme = useTheme();
   return (
     <Card  sx={{

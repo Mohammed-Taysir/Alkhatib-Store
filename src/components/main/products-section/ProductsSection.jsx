@@ -1,4 +1,4 @@
-import { Box, Button, CircularProgress, Grid, Stack, useTheme } from '@mui/material'
+import { Box, Button, CircularProgress, Grid, Skeleton, Stack, useTheme } from '@mui/material'
 import React from 'react'
 import MainTitle from '../../main-title/MainTitle'
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -14,11 +14,14 @@ import { Navigation } from 'swiper/modules';
 import ProductCard from '../../product-card/ProductCard';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import ProductSkeleton from '../../skeleton/ProductSkeleton';
 
 
 
 function ProductsSection({ sectionTitle, products, isLoading }) {
   const {t} = useTranslation();
+  const loadingArray = Array.from({'length': 10});
+  
   const theme = useTheme();
   // if (isLoading)
   //   return <CircularProgress />
@@ -27,7 +30,7 @@ function ProductsSection({ sectionTitle, products, isLoading }) {
       <Stack alignItems={'center'}>
         <MainTitle sectionTitle={sectionTitle} />
       </Stack>
-      {isLoading? <Box display = 'flex' alignItems={'center'} justifyContent={'center'} height = '400px' ><CircularProgress /></Box>: null}
+      
 
 
       <Box pt = {4}>
@@ -55,9 +58,16 @@ breakpoints={{
 }}
 >
         {
+          isLoading && loadingArray.map((item, index) => (
+            <SwiperSlide key = {index}>
+              <ProductSkeleton />
+            </SwiperSlide>
+          ))
+        }
+        {
           products && products.map(product => (
             <SwiperSlide key = {product.id} >
-              <ProductCard product={product}  />
+              <ProductCard product={product}   />
             </SwiperSlide>
           ))
         }

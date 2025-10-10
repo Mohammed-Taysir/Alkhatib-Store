@@ -13,8 +13,9 @@ import Side from './Side';
 import  { OrderTypeContext } from '../../context/OrderTypeContext';
 import Sorts from './Sorts';
 import { OrderContext } from '../../context/OrderContext';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
+import ProductSkeleton from '../../components/skeleton/ProductSkeleton';
 
 
 
@@ -29,13 +30,13 @@ function Shop() {
   const {orderType, setOrderType} = useContext(OrderTypeContext);
   const {order, setOrder} = useContext(OrderContext);
   const queryClient = useQueryClient();
-
+  const navigate = useNavigate();
   const {page} = useParams();
 
-  const [pageNum, setPageNum] = useState(page);
+ 
 
   const limit = 9;
-  const skip = (pageNum - 1) * limit;
+  const skip = (parseInt(page) - 1) * limit;
 
 
   
@@ -48,10 +49,12 @@ function Shop() {
 
   const numOfPages = Math.ceil(totalProducts / limit);
 
+  const loadingArray = Array.from({'length': 10});
+
   
   useEffect(()=> {
     queryClient.invalidateQueries(['shop']);
-  }, [pageNum, order, orderType]);
+  }, [ order, orderType]);
 
   useEffect(()=> {
     if(!productsLoading && !proIsError)
@@ -65,14 +68,13 @@ function Shop() {
     return <Typography color='error'>Error: {catError}</Typography>
 
   const handleChange = (event, value) => {
-    setPageNum(value);
-    queryClient.invalidateQueries(['shop']);
+      navigate(`/shop/${value}`);
     
   }
 
   return (
     <Box py={4}>
-      <FilterDrawer categories={categories.data} products = {filteredProducts} onFilter = {setFilteredProducts}  />
+      <FilterDrawer categories={categories?.data} products = {filteredProducts} onFilter = {setFilteredProducts}  />
       <Sorts />
 
       <Stack direction="row" spacing={5} >
@@ -84,8 +86,11 @@ function Shop() {
   
         <Box flexGrow={1}>
           {
-            productsLoading ? <Box minHeight={'100vh'} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}><CircularProgress /></Box> :
+            
               <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 3 }}>
+                {
+                  productsLoading && loadingArray.map((item, index) => <ProductSkeleton key = {index} />)
+                }
                 {
                  filteredProducts.length > 0 && filteredProducts.map(product => (<ProductCard key={product.id} product={product} />))
                 }
