@@ -37,7 +37,7 @@ const theme = (mode) => createTheme({
 
         favColor: {
           main: grey[300],
-          secondry: grey[250]
+          secondary: grey[250]
         },
         light: {
           main: '#fff'

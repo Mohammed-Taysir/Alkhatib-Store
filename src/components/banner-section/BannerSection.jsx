@@ -29,18 +29,19 @@ function BannerSection({ text, subText, img }) {
                 zIndex: 1,
                 display:"flex",
                 flexDirection: 'column',
+                alignItems: 'center',
                 gap: 2
             }}>
 
                 <Typography sx = {{
-                    color: '#fff',
+                    color: theme.palette.neutral.secondary,
                     fontWeight: 'bold',
                     fontSize: '1.7rem'
                 }}>{text}</Typography>
                 <Typography sx = {{
-                    color: '#fff',
+                    color: theme.palette.neutral.main,
                     fontWeight: 'bold',
-                    fontSize: "1.2rem"
+                    fontSize: "1.4rem"
                 }}>{subText}</Typography>
                
                <Button variant='contained' sx = {{
@@ -50,8 +51,8 @@ function BannerSection({ text, subText, img }) {
                 py: 1.4,
                 px: 4,
                 borderRadius: 15,
-                alignSelf: 'center'
-               }} component = {Link} to = '/shop/1'>Shop Now</Button>
+
+               }} component = {Link} to = '/shop/1'>Discover Now</Button>
                
             </Box>
 
