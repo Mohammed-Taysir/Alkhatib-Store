@@ -137,7 +137,7 @@ function SimpleListMenu() {
 
               <SimpleListMenu />
               
-              {
+              {/* {
                 isSmallScreen? null: <><FacebookIcon sx={{
                   color: '#fff'
                 }} fontSize='small' />
@@ -149,7 +149,7 @@ function SimpleListMenu() {
                 <LinkedInIcon sx={{
                   color: '#fff'
                 }} fontSize='small' /></>
-              }
+              } */}
 
 
             </Stack>

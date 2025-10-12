@@ -16,6 +16,7 @@ import { OrderContext } from '../../context/OrderContext';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
 import ProductSkeleton from '../../components/skeleton/ProductSkeleton';
+import { motion } from 'framer-motion';
 
 
 
@@ -32,6 +33,11 @@ function Shop() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const {page} = useParams();
+  const [animationOn, setAnimationOn] = useState(false);
+
+  useEffect(() => {
+    setAnimationOn(true);
+  }, []);
 
  
 
@@ -50,6 +56,8 @@ function Shop() {
   const numOfPages = Math.ceil(totalProducts / limit);
 
   const loadingArray = Array.from({'length': 10});
+  const MotionSide = motion(Box);
+  const MotionProducts = motion(Box);
 
   
   useEffect(()=> {
@@ -76,17 +84,17 @@ function Shop() {
       <FilterDrawer categories={categories?.data} products = {filteredProducts} onFilter = {setFilteredProducts} isLoading={catLoading} />
       <Sorts />
 
-      <Stack direction="row" spacing={5} >
+      <Stack direction="row" spacing={5} overflow={'hidden'}>
 
         {
-          !isSmallScreen && <Side products = {filteredProducts} onFilter = {setFilteredProducts} isLoading={catLoading} />
+          !isSmallScreen && <motion.dev initial = {{opacity: 0, x: -100}}  animate={animationOn ? {opacity: 1, x: 0}: {}} viewport={{once: true}} transition = {{duration: 1, ease: 'easeOut'}} ><Side products = {filteredProducts} onFilter = {setFilteredProducts} isLoading={catLoading} /></motion.dev>
         }
 
   
-        <Box flexGrow={1}>
+        <motion.dev style = {{flexGrow: 1}} initial = {{opacity: 0, x: 100}} animate = {{opacity: 1, x: 0}} viewport={{once: true}} transition={{duration: 1, ease: 'easeOut'}}  flexGrow={1}>
           {
             
-              <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 3 }}>
+              <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 3, width: '100%' }}>
                 {
                   productsLoading && loadingArray.map((item, index) => <ProductSkeleton key = {index} />)
                 }
@@ -112,7 +120,7 @@ function Shop() {
               />
             </Stack>
           </Box>
-        </Box>
+        </motion.dev>
 
       </Stack>
     </Box>

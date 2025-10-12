@@ -30,7 +30,8 @@ function Side({products, onFilter, isLoading}) {
             bgcolor: theme.palette.favColor.main,
             p: 3,
             borderRadius: 4,
-            width: isSmallScreen? "100%": 300
+            width: isSmallScreen? "100%": 300,
+            height: '100%'
         }}>
 
 

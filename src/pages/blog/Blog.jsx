@@ -2,6 +2,7 @@ import { Box, Button, Card, CardContent, CardMedia, Typography, useMediaQuery, u
 import React from 'react'
 import Widget from './Widget';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 const blogs = [
   {
     id: "1",
@@ -68,11 +69,12 @@ Plarat anaktig vårunat fatiskapet till gena turår, för att antisade i blogga.
 
 function Blog() {
   const isSmallScreen = useMediaQuery('(max-width: 778px)');
+  const MotionBox = motion(Box);
   const theme = useTheme();
   return (
     <Box py = {4}>
       <Box display = 'flex' gap = {8} flexDirection={isSmallScreen ? "column": "row"}>
-        <Box display={'flex'} flexDirection={'column'} gap = {3} width = {!isSmallScreen? "80%": "100%"}>
+        <MotionBox initial = {{opacity: 0, x: -100}} animate = {{opacity: 1, x: 0}} transition = {{duration: 1, ease: 'easeOut'}} display={'flex'} flexDirection={'column'} gap = {3} width = {!isSmallScreen? "80%": "100%"}>
           {
             blogs.map(blog => (
               <Card key = {blog.id} sx = {{borderRadius: 4}}>
@@ -102,10 +104,10 @@ function Blog() {
               </Card>
             ))
           }
-        </Box>
-        <Box>
+        </MotionBox>
+        <MotionBox initial = {{opacity: 0, x: 100}} animate = {{opacity: 1, x: 0}} transition = {{duration: 1, ease: 'easeOut'}}>
           <Widget blogs = {blogs} />
-        </Box>
+        </MotionBox>
       </Box>
     </Box>
   )

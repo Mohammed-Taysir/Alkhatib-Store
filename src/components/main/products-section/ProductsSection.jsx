@@ -15,7 +15,8 @@ import ProductCard from '../../product-card/ProductCard';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import ProductSkeleton from '../../skeleton/ProductSkeleton';
-
+import { motion } from 'framer-motion'
+import MotionedSection from '../../motioned-section/MotionedSection';
 
 
 function ProductsSection({ sectionTitle, products, isLoading }) {
@@ -26,7 +27,7 @@ function ProductsSection({ sectionTitle, products, isLoading }) {
   // if (isLoading)
   //   return <CircularProgress />
   return (
-    <Box  component={'section'} pb = {4}>
+    <MotionedSection  component={'section'} pb = {4}>
       <Stack alignItems={'center'}>
         <MainTitle sectionTitle={sectionTitle} />
       </Stack>
@@ -79,7 +80,7 @@ breakpoints={{
       </Box>
 
 
-    </Box>
+    </MotionedSection>
   )
 }
 

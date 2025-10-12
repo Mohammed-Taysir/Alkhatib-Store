@@ -5,13 +5,13 @@ import BottomBar from '../components/header/BottomBar'
 import { Outlet } from 'react-router-dom'
 import Footer from '../components/footer/Footer'
 import { Box, Container, useMediaQuery } from '@mui/material'
-import FloatingIcons from '../components/floating-icons/FloatingIcons'
+
 
 function MainLayout() {
   const isSmallScreen = useMediaQuery('(max-width: 500px)');
   return (
     <>
-      {isSmallScreen && <FloatingIcons />}
+  
       <Box component = 'header'>
         <TopBar />
         <MidBar />

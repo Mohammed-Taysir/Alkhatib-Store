@@ -31,7 +31,7 @@ const theme = (mode) => createTheme({
           secondary: '#035186',
         },
         background: {
-          default: "#fff" , // خلفية أساسية'rgba(0,0, 0, .1)'
+          default: "#F5F5F5" , // خلفية أساسية'rgba(0,0, 0, .1)'
           // paper: "#E5E7EB", // خلفية الكروت
         },
 

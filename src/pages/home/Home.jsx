@@ -10,11 +10,11 @@ import BannerSection from '../../components/banner-section/BannerSection';
 import ProductSkeleton from '../../components/skeleton/ProductSkeleton';
 import QuickView from '../../components/product-card/QuickView';
 
+
 function Home() {
   const {t} = useTranslation();
   const {data:products, isLoading, isError, error} = useFetch('/Customer/Products', 'products');
-  console.log(products);
-  console.log(products)
+  
   return (
     <Box component={'main'}>
       <MainBanner />

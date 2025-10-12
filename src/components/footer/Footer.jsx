@@ -3,11 +3,15 @@ import React from 'react'
 import darklogo from '../../assets/darklogo.png'
 import { useTranslation } from 'react-i18next'
 import Logo from '../logo/Logo';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 function Footer() {
   const { t } = useTranslation();
   const date = new Date();
   const isSmallScreen = useMediaQuery('(max-width: 515px)');
+  const isMediumScreen = useMediaQuery('(max-width:768px)');
   return (
     <Box bgcolor={'#2b3445'} >
       <Container maxWidth='lg' >
@@ -15,13 +19,30 @@ function Footer() {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          flexWrap: 'wrap'
+          flexDirection: isMediumScreen ? "column": 'row',
+    
         }}>
           <Box sx = {{
             margin: isSmallScreen && 'auto'
           }}>
             <Logo isDark={true} />
           </Box>
+          <Stack alignItems={'center'} spacing={1} mb = {2}>
+            <Typography fontWeight={'bold'} color = '#fff'>Follow On: </Typography>
+            <Stack direction={'row'} alignItems={'center'} spacing={1}>
+            <FacebookIcon sx={{
+                  color: '#fff'
+                }} fontSize='medium' />
+  
+                <InstagramIcon sx={{
+                  color: '#fff'
+                }} fontSize='medium' />
+  
+                <LinkedInIcon sx={{
+                  color: '#fff'
+                }} fontSize='medium' />
+            </Stack>
+          </Stack>
           <Stack spacing={1} sx = {{
             margin: isSmallScreen && 'auto',
           }}>

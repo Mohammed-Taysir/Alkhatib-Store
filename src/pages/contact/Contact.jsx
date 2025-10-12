@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Stack, TextField, Typography, useMediaQuery, useTheme } from '@mui/material'
+import { Avatar, Box, Button, duration, Stack, TextField, Typography, useMediaQuery, useTheme } from '@mui/material'
 import React from 'react'
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -6,9 +6,11 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import SendIcon from '@mui/icons-material/Send';
+import { motion } from 'framer-motion'
 
 function Contact() {
   const theme = useTheme();
+  
   const isSmallScreen = useMediaQuery('(max-width: 990px)');
   return (
     <Box py={4}>
@@ -18,7 +20,7 @@ function Contact() {
         justifyContent: "space-between",
         alignItems: 'center'
       }}>
-        <Box>
+        <motion.dev initial = {{opacity: 0, x: -100}} animate = {{opacity: 1, x: 0}} transition = {{duration: 1, ease: 'easeOut'}}>
           <Typography component={'h3'} variant='h5' sx={{
             fontFamily: "Bitcount Single Ink",
             color: theme.palette.secondary.neutral
@@ -32,9 +34,10 @@ function Contact() {
             <Avatar sx={{ bgcolor: theme.palette.neutral.secondary }}><YouTubeIcon /></Avatar>
             <Avatar sx={{ bgcolor: theme.palette.neutral.secondary }}><LinkedInIcon /></Avatar>
           </Stack>
-        </Box>
+        </motion.dev>
 
-        <Box display={'flex'} flexDirection='column' gap={2} mt={isSmallScreen && 3} >
+       <motion.dev initial = {{opacity: 0, x: 100}} animate = {{opacity: 1, x: 0}} transition = {{duration: 1, ease: 'easeOut'}}>
+       <Box display={'flex'} flexDirection='column' gap={2} mt={isSmallScreen && 3} >
           <Typography align='center' sx={{ fontSize: '20px', color: theme.palette.neutral.secondary }}>Get In Touch</Typography>
           <Stack direction={'row'} alignItems={'center'} spacing={3}>
             <TextField sx={{
@@ -77,6 +80,7 @@ function Contact() {
           </Button>
 
         </Box>
+       </motion.dev>
 
       </Box>
     </Box>

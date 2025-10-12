@@ -2,15 +2,16 @@ import { Box, Button, Stack, TextField, Typography, useMediaQuery, useTheme } fr
 import React from 'react'
 
 import image from '../../assets/new-img.png'
+import MotionedSection from '../motioned-section/MotionedSection';
 
 function Subscribe() {
   const isSmallScreen = useMediaQuery('(max-width: 990px)');
   const theme = useTheme();
   return (
-    <Box pb={5} my = {3}>
+    <MotionedSection pb={5} my = {3}>
       <Box sx={{
 
-
+        mb: 3
       }}>
         <Box sx={{
 
@@ -60,7 +61,7 @@ function Subscribe() {
             } */}
       </Box>
 
-    </Box>
+    </MotionedSection>
   )
 }
 
