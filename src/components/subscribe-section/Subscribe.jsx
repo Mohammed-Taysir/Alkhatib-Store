@@ -8,10 +8,10 @@ function Subscribe() {
   const isSmallScreen = useMediaQuery('(max-width: 990px)');
   const theme = useTheme();
   return (
-    <MotionedSection pb={5} my = {3}>
+    <MotionedSection pb={5} >
       <Box sx={{
 
-        mb: 3
+        mb: 7
       }}>
         <Box sx={{
 

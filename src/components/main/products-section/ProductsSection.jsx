@@ -27,7 +27,7 @@ function ProductsSection({ sectionTitle, products, isLoading }) {
   // if (isLoading)
   //   return <CircularProgress />
   return (
-    <MotionedSection  component={'section'} pb = {4}>
+    <MotionedSection  component={'section'} mt = {7}>
       <Stack alignItems={'center'}>
         <MainTitle sectionTitle={sectionTitle} />
       </Stack>

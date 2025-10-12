@@ -14,7 +14,7 @@ function BannerSection({ text, subText, img }) {
                 display: 'flex',
                 justifyContent: 'flex-end',
                 alignItems: 'center',
-               marginBottom: 7,
+               my: 7,
             }}
         >
             <Box component={'img'} src={img} sx={{
