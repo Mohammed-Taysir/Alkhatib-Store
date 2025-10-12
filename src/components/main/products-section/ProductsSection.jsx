@@ -37,7 +37,7 @@ function ProductsSection({ sectionTitle, products, isLoading }) {
         
         
 
-<Swiper style = {{padding: "20px 0"}} navigation={true} modules={[Navigation]} className="mySwiper"  spaceBetween={25}  
+<Swiper style = {{padding: "20px 0", overflow:'visible !important'}} navigation={true} modules={[Navigation]} className="mySwiper"  spaceBetween={25}  
 breakpoints={{
 
   300: {
@@ -66,7 +66,7 @@ breakpoints={{
         }
         {
           products && products.map(product => (
-            <SwiperSlide key = {product.id} >
+            <SwiperSlide style = {{overflow: 'visible !important'}} key = {product.id} >
               <ProductCard product={product}   />
             </SwiperSlide>
           ))

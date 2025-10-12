@@ -1,8 +1,8 @@
-import { Box, Stack, useMediaQuery, useTheme } from '@mui/material'
-import { useState } from 'react'
+import { Box, Skeleton, Stack, useMediaQuery, useTheme } from '@mui/material'
+import { useEffect, useState } from 'react'
 
 
-function ImgsSlider({ product }) {
+function ImgsSlider({ product, isLoading, isError }) {
     const imgs = [
         '/img-1.jpg',
         '/img-2.jpg',
@@ -11,17 +11,22 @@ function ImgsSlider({ product }) {
 
     console.log(product)
 
-    const [active, setActive] = useState(product.mainImageUrl);
+    const [active, setActive] = useState('');
+    useEffect(() => {
+        if(!isLoading && !isError)
+            setActive(product.mainImageUrl);
+    }, [isLoading, isError, product])
     const theme = useTheme();
     const isSmallScreen = useMediaQuery('(max-width: 778px)');
+    
     return (
         <Box>
             <Box className='main-image'>
-                <Box component={'img'} src={active} sx={{
+                {!isLoading?<Box component={'img'} src={active} sx={{
                     width: isSmallScreen? '100%': '400px',
                     height: '400px',
                     borderRadius: 4
-                }} />
+                }} />: <Skeleton variant='rectangle' animation = 'wave' width = {400} height = {416}/>}
             </Box>
             <Box className='imgs-slider'>
                 <Stack direction = 'row' spacing={1}>

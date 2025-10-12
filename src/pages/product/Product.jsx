@@ -6,6 +6,7 @@ import ImgsSlider from './ImgsSlider';
 import Details from './Details';
 import Reviews from './Reviews';
 import SpecificationTabs from './SpecificationTabs';
+import ProductHead from './ProductHead';
 
 function Product() {
   const {id} = useParams();
@@ -16,7 +17,7 @@ function Product() {
   const product = data?.data;
   console.log(product)
   
-  const isSmallScreen = useMediaQuery('(max-width: 850px)');
+  
 
   let message = '';
   if(isError)
@@ -26,12 +27,12 @@ function Product() {
   return (
     <Box py = {5}>
       <Container maxWidth = 'lg'>
-     
-        {isLoading? <Box height={'250px'} display={'flex'} justifyContent={'center'} alignItems={"center"}><CircularProgress/></Box>: <Stack direction = { isSmallScreen? 'column': 'row'} spacing={4} >
+        <ProductHead product = {product} isLoading = {isLoading} />
+        {/* {isLoading? <Box height={'250px'} display={'flex'} justifyContent={'center'} alignItems={"center"}><CircularProgress/></Box>: <Stack direction = { isSmallScreen? 'column': 'row'} spacing={4} >
           <ImgsSlider product = {product} />
           <Details  sx = {{flexGrow: 1}} product = {product} />
-        </Stack>}
-        <SpecificationTabs product={product} />
+        </Stack>} */}
+        <SpecificationTabs product={product} isLoading = {isLoading} />
       </Container>
     </Box>
   )

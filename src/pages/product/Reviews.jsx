@@ -2,7 +2,7 @@ import * as React from 'react';
 
 
 import Box from '@mui/material/Box';
-import { Avatar, Button, Rating, Stack, TextField, Typography, useTheme } from '@mui/material';
+import { Avatar, Button, CircularProgress, Rating, Skeleton, Stack, TextField, Typography, useTheme } from '@mui/material';
 import { useState } from 'react';
 import { LoginContext } from '../../context/LoginContext';
 import { useNavigate } from 'react-router-dom';
@@ -16,7 +16,7 @@ import { useQueryClient } from '@tanstack/react-query';
 
 
 
-function Reviews({ product }) {
+function Reviews({ product, isLoading }) {
   const queryClient = useQueryClient();
   const { isLoggedin, setIsLoggedin } = React.useContext(LoginContext);
   const [customRate, setCustomRate] = useState(0);
@@ -64,9 +64,11 @@ function Reviews({ product }) {
   }
   return (
     <Box >
-      <Typography fontWeight='bold' fontSize='1.4rem'>{product?.reviews.length} {product?.reviews.length > 1 || product?.reviews.length == 0 ? "Reviews" : "Review"} for {product.name}</Typography>
+      {!isLoading?<Typography fontWeight='bold' fontSize='1.4rem'>{product?.reviews.length} {product?.reviews.length > 1 || product?.reviews.length == 0 ? "Reviews" : "Review"} for {product.name}</Typography>: <Skeleton variant ={'text'} />}
       <Stack>
-        {product?.reviews?.map(review => (
+        {isLoading? <Box height = {'250px'} display={'flex'} justifyContent={'center'} alignItems = {'center'}>
+          <CircularProgress />
+        </Box> :product?.reviews?.map(review => (
           <Box key={review.id} display='flex' gap={3} borderBottom={`1px solid #eee`} py={3}>
             <Avatar>{review.fullName[0].toUpperCase()}</Avatar>
             <Stack spacing={1}>

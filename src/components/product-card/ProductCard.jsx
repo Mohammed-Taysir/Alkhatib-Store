@@ -1,12 +1,28 @@
-import { Box, Button, Card, CardContent, CardMedia, Link, Stack, Typography, useTheme } from '@mui/material'
-import React from 'react'
+import { Box, Button, Card, CardContent, CardMedia, IconButton, Link, Stack, Typography, useMediaQuery, useTheme } from '@mui/material'
+import React, { useState } from 'react'
 import StarIcon from '@mui/icons-material/Star';
-import { Link as RouterLink } from 'react-router-dom';
-
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import QuickView from './QuickView';
+import useFetch from "../../custom-hook/useFetch"
 function ProductCard({ product}) {
   const theme = useTheme();
+  const navigate = useNavigate();
+  const [visible, setVisible] = useState(false);
+
+  
+
+  
+
   return (
-    <Card  sx={{
+   <Box>
+    {
+      visible && <QuickView product={product}  onClose = {() => {
+        setVisible(false)
+      }} />
+    }
+     <Card  sx={{
       boxShadow: '0 2px 15px rgb(0 0 0 / 10%)',
       transition: "0.3s",
       ':hover': {
@@ -16,7 +32,7 @@ function ProductCard({ product}) {
         top: 0
       },
       ':hover .view-button': {
-        bottom: '15px'
+        right: 5
       }
       ,
       position: 'relative',
@@ -25,7 +41,11 @@ function ProductCard({ product}) {
       height: '377.67px'
       
     }}>
-      <Stack className = 'discount-rating'  direction = 'row' justifyContent={'space-between'} width = '100%' position={'absolute'} zIndex={1} p = {2} top = "-100%">
+    
+      <Stack className = 'discount-rating'  direction = 'row' justifyContent={'space-between'} width = '100%' maxWidth = {'calc(100% - 15px)'}  position={'absolute'} zIndex={1} py = {1}   top = "-100%"  sx = {{
+        left: '50%',
+        transform: 'translateX(-50%)'
+      }}>
         <Typography bgcolor= {theme.palette.secondary.main} color = "#fff" width = '40px' height = '30px' sx = {{
           display: 'flex',
           justifyContent:"center",
@@ -44,9 +64,7 @@ function ProductCard({ product}) {
           fontSize: '19px'
         }} /> {product.rate}</Typography>
       </Stack>
-      <Box position={'relative'} sx = {{
-        overflow: 'hidden'
-      }}>
+      <Box position={'relative'} >
         <CardMedia component={'img'} image={product.mainImageUrl} alt = {product.name} sx={{
         objectFit: 'contained',
         maxWidth: '100%',
@@ -54,39 +72,50 @@ function ProductCard({ product}) {
       }} >
         
       </CardMedia>
-      <Button className='view-button' variant='contained' sx = {{
-        bgcolor: theme.palette.neutral.main,
 
+      <Box className = {'view-button'} sx = {{
         position: 'absolute',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        bottom: "-100%",
-        boxShadow: '0 0 12px rgba(0, 0, 0, .2)',
-        transition: '0.5s',
-        px: 2,
-        py: 1
+       
+        bottom: 2,
+        display: 'flex',
         
-      }}><Link component={RouterLink} to = {`/product/${product.id}`} sx = {{
-        color: '#fff',
-        fontSize: '1rem',
-        textTransform: 'capitalize'
-
-      }}>view</Link></Button>
+        flexDirection: 'column',
+        alignItems:'center',
+        justifyContent: 'space-between',
+        
+        right: '-100%',
+        height: 'calc(100% - 45px)',
+        transition: "0.3s"
+   
+      }}>
+        <IconButton sx = {{
+          bgcolor: '#fff'
+        }} onClick={() => {
+          setVisible(true)
+        }}><VisibilityOutlinedIcon sx = {{color: theme.palette.neutral.secondary}} /></IconButton>
+        <IconButton sx = {{
+          bgcolor: '#fff'
+        }}><FavoriteBorderOutlinedIcon sx = {{color: theme.palette.neutral.secondary}} /></IconButton>
+      </Box>
+      
       </Box>
       <CardContent>
         <Stack spacing = {2}>
           <Typography sx={{
-            fontSize: { xs: '1.5rem', md: '1.1rem' },
+            fontSize: "1.3rem" ,
             ":hover": {
               textDecoration: 'underline',
               cursor: 'pointer'
             }
+          }} onClick = {() => {
+            navigate(`/product/${product.id}`)
           }}>{product.name}</Typography>
           <Typography color = {theme.palette.secondary.main} fontSize = '15px'>${product.price}</Typography>
         </Stack>
 
       </CardContent>
     </Card>
+   </Box>
   )
 }
 

@@ -1,4 +1,4 @@
-import { Alert, Box, Button, Chip, IconButton, Rating, Stack, Typography, useTheme } from '@mui/material'
+import { Alert, Box, Button, Chip, IconButton, Rating, Skeleton, Stack, Typography, useTheme } from '@mui/material'
 import React, { useContext, useState } from 'react'
 import Divider from '@mui/material/Divider';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
@@ -10,7 +10,7 @@ import { Bounce, Flip, toast } from 'react-toastify';
 import axios from 'axios';
 import AxiosUserInstance from '../../api/AxiosUserInstance';
 import { useQueryClient } from '@tanstack/react-query';
-function Details({ product }) {
+function Details({ product, isLoading, isError }) {
   const theme = useTheme();
 
   const [onHover, setOnHover] = useState(false);
@@ -75,11 +75,11 @@ function Details({ product }) {
     <Box sx={{ overflow: 'hidden' }} flexGrow = {1}>
 
       <Stack spacing={1} pb={2}>
-        <Typography fontSize='1.8rem'>{product.name}</Typography>
-        <Stack direction={'row'} spacing={2}>
+        {!isLoading?<Typography fontSize='1.8rem'>{product.name}</Typography>: <Skeleton variant='text' fontSize = {'1.8rem'} height = {40} />}
+        {!isLoading?<Stack direction={'row'} spacing={2}>
           <Rating name="disabled" value={product.rate} readOnly />
           <Typography fontSize={'14px'} color={theme.palette.neutral.main}>(3,671 reviews)</Typography>
-        </Stack>
+        </Stack>: <Skeleton variant='text' fontSize ={'14px'} />}
       </Stack>
       <Divider />
       <Box pt={2} sx={{
@@ -88,12 +88,12 @@ function Details({ product }) {
         gap: 2
       }}>
         <Stack spacing={1}>
-          <Typography fontSize='1.8rem'>Price: ${product.price}</Typography>
-          <Typography fontSize='1.34rem'>Category: <Chip label={product.categoryName} variant="outlined" sx={{
+          {!isLoading?<Typography fontSize='1.8rem'>Price: ${product.price}</Typography>: <Skeleton variant='text' fontSize = {'1.8rem'} height = {35}/>}
+          < Typography fontSize='1.34rem' display={'flex'} gap = {2} alignItems={'center'}>Category: {!isLoading ?<Chip label={product.categoryName} variant="outlined" sx={{
             bgcolor: theme.palette.neutral.main,
             color: '#fff'
-          }} /></Typography>
-          <Typography>{product.description}</Typography>
+          }} />: <Skeleton variant="circular" width={40} height={30} />}</Typography>
+         { !isLoading? <Typography>{product.description}</Typography>: <Skeleton variant = {'text'} fontSize = {"1.8rem"} />}
         </Stack>
         <Stack direction={'row'} spacing={3}>
           <Button variant='contained' size='large' sx={{

@@ -18,7 +18,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import Side from './Side';
 
 
-function FilterDrawer({categories, products, onFilter}) {
+function FilterDrawer({categories, products, onFilter, isLoading}) {
     const theme = useTheme();
     const isSmallScreen = useMediaQuery('(max-width: 900px)');
     const [open, setOpen] = React.useState(false);
@@ -29,7 +29,7 @@ function FilterDrawer({categories, products, onFilter}) {
 
     const DrawerList = (
         <Box sx={{ width: 250, bgcolor: theme.palette.favColor.main, height: '100%'}} role="presentation">
-            <Side products={products} onFilter = {onFilter} />
+            <Side products={products} onFilter = {onFilter} isLoading = {isLoading} />
         </Box>
     );
 

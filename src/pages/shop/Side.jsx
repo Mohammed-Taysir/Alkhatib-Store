@@ -1,15 +1,15 @@
 import React from 'react'
-import { Box, CircularProgress, Divider, Stack, Typography, FormControlLabel, FormLabel, Radio, RadioGroup, useTheme, TextField, Pagination, PaginationItem, Button, useMediaQuery, IconButton } from '@mui/material'
+import { Box, CircularProgress, Divider, Stack, Typography, FormControlLabel, FormLabel, Radio, RadioGroup, useTheme, TextField, Pagination, PaginationItem, Button, useMediaQuery, IconButton, Skeleton } from '@mui/material'
 import { useState } from 'react'
 import useFetch from '../../custom-hook/useFetch';
 import Slider from '@mui/material/Slider';
 import FormControl from '@mui/material/FormControl';
 
-function Side({products, onFilter}) {
+function Side({products, onFilter, isLoading}) {
     const isSmallScreen = useMediaQuery('(max-width: 900px)');
     const [category, setCategory] = useState('All');
     const [value, setValue] = useState([1000, 0]);
-
+    const loadingArray = Array.from({'length': 10});
 
     const handleChange = (event, newValue) => {
         setValue([newValue[1], newValue[0]]);
@@ -77,7 +77,19 @@ function Side({products, onFilter}) {
                         }
                     }} value="All" control={<Radio />} label="All" />
                     {
-                        categories?.data.map((item) => (
+                        isLoading && loadingArray.map((item, index) => (
+                            <FormControlLabel sx={{
+                                '.muiltr-1q72ply-MuiButtonBase-root-MuiSwitchBase-root-MuiRadio-root.Mui-checked': {
+                                    color: 'usnset'
+                                },
+                                '.Mui-checked': {
+                                    color: theme.palette.neutral.secondary
+                                }
+                            }} key={index}  control={<Radio />} label={<Skeleton variant = 'text' fontSize = "15px" width = {50} />} />
+                        ))
+                    }
+                    {
+                        categories && categories?.data.map((item) => (
                             <FormControlLabel sx={{
                                 '.muiltr-1q72ply-MuiButtonBase-root-MuiSwitchBase-root-MuiRadio-root.Mui-checked': {
                                     color: 'usnset'

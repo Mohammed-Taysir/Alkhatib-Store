@@ -61,8 +61,7 @@ function Shop() {
       setFilteredProducts(products?.data.data);
   }, [productsLoading, proIsError, products]);
 
-  if (catLoading)
-    return <Box display={'flex'} justifyContent={'center'} alignItems={'center'} height = '100vh'><CircularProgress /></Box>
+  
 
   if (catIsError)
     return <Typography color='error'>Error: {catError}</Typography>
@@ -74,13 +73,13 @@ function Shop() {
 
   return (
     <Box py={4}>
-      <FilterDrawer categories={categories?.data} products = {filteredProducts} onFilter = {setFilteredProducts}  />
+      <FilterDrawer categories={categories?.data} products = {filteredProducts} onFilter = {setFilteredProducts} isLoading={catLoading} />
       <Sorts />
 
       <Stack direction="row" spacing={5} >
 
         {
-          !isSmallScreen && <Side products = {filteredProducts} onFilter = {setFilteredProducts}/>
+          !isSmallScreen && <Side products = {filteredProducts} onFilter = {setFilteredProducts} isLoading={catLoading} />
         }
 
   

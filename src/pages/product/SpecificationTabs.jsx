@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-import { Typography } from '@mui/material';
+import { Skeleton, Typography } from '@mui/material';
 
 
 import Table from '@mui/material/Table';
@@ -44,7 +44,7 @@ function a11yProps(index) {
   };
 }
 
-function SpecificationTabs({ product }) {
+function SpecificationTabs({ product, isLoading }) {
   const [value, setValue] = React.useState(0);
 
   console.log(product);
@@ -63,12 +63,16 @@ function SpecificationTabs({ product }) {
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
-        <Typography>{product?.description}</Typography>
+        {!isLoading?<Typography>{product?.description}</Typography>: <> 
+          <Skeleton variant= {'text'}  />
+          <Skeleton variant= {'text'}  />
+          <Skeleton variant= {'text'}  />
+         </>}
 
       </CustomTabPanel>
       
       <CustomTabPanel value={value} index={1}>
-        <Reviews product = {product} />
+        <Reviews product = {product} isLoading = {isLoading} />
       </CustomTabPanel>
     </Box>
   );
