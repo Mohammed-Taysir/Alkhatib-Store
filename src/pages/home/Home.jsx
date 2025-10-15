@@ -10,6 +10,7 @@ import BannerSection from '../../components/banner-section/BannerSection';
 import ProductSkeleton from '../../components/skeleton/ProductSkeleton';
 import QuickView from '../../components/product-card/QuickView';
 import Testimonials from '../../components/testimonials/Testimonials';
+import banner from '../../assets/banner-2.jpg'
 
 
 function Home() {
@@ -23,7 +24,7 @@ function Home() {
       
       <ProductsSection sectionTitle = {t("Featured Products")} products = {products?.data?.data} isLoading = {isLoading} />
 
-      <BannerSection text = {t('bannerDiscountTitle')} subText={t('bannerDiscountSubTitle')} img = {'/banner-2.jpg'} />
+      <BannerSection text = {t('bannerDiscountTitle')} subText={t('bannerDiscountSubTitle')} img = {banner} />
       <Testimonials />
       <Subscribe />
     </Box>
