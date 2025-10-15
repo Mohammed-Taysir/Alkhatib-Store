@@ -85,6 +85,7 @@
     "resetPasswordTitle": "إعادة تعيين كلمة المرور",
     "resetPasswordSubtitle": "أدخل بريدك الإلكتروني لإعادة تعيين كلمة المرور",
     "codeLabel": "الرمز",
-    "newPasswordLabel": "كلمة المرور الجديدة"
+    "newPasswordLabel": "كلمة المرور الجديدة",
+    "view": "عرض"
 
 }

@@ -86,7 +86,8 @@
     "resetPasswordTitle": "Reset Your Password",
     "resetPasswordSubtitle": "Enter your email to reset your password",
     "codeLabel": "Code",
-    "newPasswordLabel": "New Password"
+    "newPasswordLabel": "New Password",
+    "view": "View"
    
 
 }
