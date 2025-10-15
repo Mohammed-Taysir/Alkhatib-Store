@@ -10,11 +10,14 @@ import { Bounce, Flip, toast } from 'react-toastify';
 import axios from 'axios';
 import AxiosUserInstance from '../../api/AxiosUserInstance';
 import { useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
+import i18n from '../../i18n';
 function Details({ product, isLoading, isError }) {
   const theme = useTheme();
 
   const [onHover, setOnHover] = useState(false);
   const { isLoggedin } = useContext(LoginContext);
+  const {t} = useTranslation();
 
   const queryClient = useQueryClient();
 
@@ -78,7 +81,7 @@ function Details({ product, isLoading, isError }) {
         {!isLoading?<Typography fontSize='1.8rem'>{product.name}</Typography>: <Skeleton variant='text' fontSize = {'1.8rem'} height = {40} />}
         {!isLoading?<Stack direction={'row'} spacing={2}>
           <Rating name="disabled" value={product.rate} readOnly />
-          <Typography fontSize={'14px'} color={theme.palette.neutral.main}>(3,671 reviews)</Typography>
+          <Typography fontSize={'14px'} color={theme.palette.neutral.main}>(3,671 {t('reviews')})</Typography>
         </Stack>: <Skeleton variant='text' fontSize ={'14px'} />}
       </Stack>
       <Divider />
@@ -88,8 +91,8 @@ function Details({ product, isLoading, isError }) {
         gap: 2
       }}>
         <Stack spacing={1}>
-          {!isLoading?<Typography fontSize='1.8rem'>Price: ${product.price}</Typography>: <Skeleton variant='text' fontSize = {'1.8rem'} height = {35}/>}
-          < Typography fontSize='1.34rem' display={'flex'} gap = {2} alignItems={'center'}>Category: {!isLoading ?<Chip label={product.categoryName} variant="outlined" sx={{
+          {!isLoading?<Typography fontSize='1.8rem'>{t('Price')}: ${product.price}</Typography>: <Skeleton variant='text' fontSize = {'1.8rem'} height = {35}/>}
+          < Typography fontSize='1.34rem' display={'flex'} gap = {2} alignItems={'center'}>{t('category')}: {!isLoading ?<Chip label={product.categoryName} variant="outlined" sx={{
             bgcolor: theme.palette.neutral.main,
             color: '#fff'
           }} />: <Skeleton variant="circular" width={40} height={30} />}</Typography>
@@ -108,7 +111,9 @@ function Details({ product, isLoading, isError }) {
               addToCart()
             }}
           >
-            Add To Cart <ShoppingCartOutlinedIcon sx={{ ml: 2 }} />
+            {t('addToCart')} <ShoppingCartOutlinedIcon sx={{ ml: 2,
+              transform: i18n.dir() == 'rtl' && 'rotateY(-180deg)'
+             }} />
           </Button>
           <IconButton sx={{
             px: 2,

@@ -23,7 +23,7 @@ function Home() {
       
       <ProductsSection sectionTitle = {t("Featured Products")} products = {products?.data?.data} isLoading = {isLoading} />
 
-      <BannerSection text = {'Enjoy a Warm Welcome: Exclusive Offer Inside'} subText={"Your first purchase comes with a special surprise – don’t miss out"} img = {'/banner-2.jpg'} />
+      <BannerSection text = {t('bannerDiscountTitle')} subText={t('bannerDiscountSubTitle')} img = {'/banner-2.jpg'} />
       <Testimonials />
       <Subscribe />
     </Box>

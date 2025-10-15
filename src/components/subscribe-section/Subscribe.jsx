@@ -3,9 +3,11 @@ import React from 'react'
 
 import image from '../../assets/new-img.png'
 import MotionedSection from '../motioned-section/MotionedSection';
+import { useTranslation } from 'react-i18next';
 
 function Subscribe() {
   const isSmallScreen = useMediaQuery('(max-width: 990px)');
+  const {t} = useTranslation();
   const theme = useTheme();
   return (
     <MotionedSection pb={5} >
@@ -33,7 +35,7 @@ function Subscribe() {
             fontWeight: 'bold',
             fontSize: !isSmallScreen ? '1.6rem' : "1rem",
             lineHeight: isSmallScreen ? '1.7' : null,
-          }}>Let’s stay connected 🚀 Subscribe with your email and get all the cool stuff first</Typography>
+          }}>{t('subscribeTitle')}</Typography>
           <Stack direction={'row'} alignItems={'center'} spacing={1}>
             <TextField variant='outlined' sx={{
               flexGrow: 1,
@@ -41,8 +43,8 @@ function Subscribe() {
                 borderRadius: 4,
                 height: isSmallScreen && '40px',
               }
-            }} label="Email" />
-            <Button variant='outlined' sx={{ height: !isSmallScreen ? '53.3px' : "40px", bgcolor: theme.palette.neutral.secondary, color: '#Fff', textTransform: "capitalize", borderRadius: '15px' }}>Subscribe</Button>
+            }} label= {t('email')} />
+            <Button variant='outlined' sx={{ height: !isSmallScreen ? '53.3px' : "40px", bgcolor: theme.palette.neutral.secondary, color: '#Fff', textTransform: "capitalize", borderRadius: '15px' }}>{t('subscribe')}</Button>
           </Stack>
         </Box>
 

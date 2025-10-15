@@ -21,7 +21,7 @@ function CustomSortMenu({options, title,  onSet}) {
     const handleMenuItemClick = (event, index) => {
         setSelectedIndex(index);
         setAnchorEl(null);
-        onSet(options[index]);
+        onSet(options[1][index]);
       
     };
 
@@ -55,10 +55,7 @@ function CustomSortMenu({options, title,  onSet}) {
                 >
                     <ListItemText
                         primary={title}
-                        sx={{
-
-                        }}
-                        secondary={options[selectedIndex]}
+                        secondary={options[0][selectedIndex]}
                     />
                 </ListItemButton>
             </List>
@@ -74,7 +71,7 @@ function CustomSortMenu({options, title,  onSet}) {
                     },
                 }}
             >
-                {options.map((option, index) => (
+                {options[0].map((option, index) => (
                     <MenuItem
                         key={option}
 

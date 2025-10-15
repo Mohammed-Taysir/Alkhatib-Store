@@ -8,6 +8,7 @@ import axios from 'axios';
 import { Bounce, toast } from 'react-toastify';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { useTranslation } from 'react-i18next';
 
 function Register() {
   const theme = useTheme();
@@ -15,6 +16,7 @@ function Register() {
   const [isLoading, setIsLoading] = useState(false);
   const [serverError, setServerError] = useState('');
   const [isVisible, setIsVisible] = useState(false);
+  const {t} = useTranslation();
 
   const navigate = useNavigate();
 
@@ -69,7 +71,7 @@ Please check your email to confirm your registration.`, {
       <Card sx={{ width: { xs: '100%', sm: 450 }, borderRadius: 6 }}>
         <CardContent>
           <Box>
-            <Typography textAlign={'center'} variant='h6' color={theme.palette.text.primary}>Sign Up</Typography>
+            <Typography textAlign={'center'} variant='h6' color={theme.palette.text.primary}>{t('signUp')}</Typography>
           </Box>
           <Box p={3} display={'flex'} flexDirection={'column'} gap={3} sx={{
             '.MuiBox-root': {
@@ -78,7 +80,7 @@ Please check your email to confirm your registration.`, {
             }
 
           }}>
-            <TextField {...register("fullName")} variant='outlined' label='Full Name' sx={{
+            <TextField {...register("fullName")} variant='outlined' label={t('fullName')} sx={{
               width: `100%`, borderRadius: 5,
               '.MuiInputBase-root': {
                 borderRadius: 2
@@ -87,7 +89,7 @@ Please check your email to confirm your registration.`, {
 
               error={errors.fullName}
               helperText={errors.fullName?.message} />
-            <TextField {...register("userName")} variant='outlined' label='User Name' sx={{
+            <TextField {...register("userName")} variant='outlined' label={t('userName')} sx={{
               width: `100%`, borderRadius: 5,
               '.MuiInputBase-root': {
                 borderRadius: 2
@@ -95,7 +97,7 @@ Please check your email to confirm your registration.`, {
             }}
               error={errors.userName}
               helperText={errors.userName?.message} />
-            <TextField {...register("email")} variant='outlined' label='Email' sx={{
+            <TextField {...register("email")} variant='outlined' label={t('email')} sx={{
               width: `100%`, borderRadius: 5,
               '.MuiInputBase-root': {
                 borderRadius: 2
@@ -103,7 +105,7 @@ Please check your email to confirm your registration.`, {
             }}
               error={errors.email}
               helperText={errors.email?.message} />
-            <TextField {...register("phoneNumber")} variant='outlined' label='Phone Number' sx={{
+            <TextField {...register("phoneNumber")} variant='outlined' label={t('phone')} sx={{
               width: `100%`, borderRadius: 5,
               '.MuiInputBase-root': {
                 borderRadius: 2
@@ -113,7 +115,7 @@ Please check your email to confirm your registration.`, {
               helperText={errors.phoneNumber?.message}
             />
             <Box position={'relative'}>
-              <TextField {...register("password")} type={isVisible ? 'text' : 'password'} variant='outlined' label='Password' sx={{
+              <TextField {...register("password")} type={isVisible ? 'text' : 'password'} variant='outlined' label={t('password')} sx={{
                 width: `100%`, borderRadius: 5,
                 '.MuiInputBase-root': {
                   borderRadius: 2
@@ -137,9 +139,9 @@ Please check your email to confirm your registration.`, {
             <Button variant='contained' size='large' type='submit' sx={{
               bgcolor: theme.palette.neutral.secondary
             }} disabled={isLoading} >
-              {isLoading ? <CircularProgress /> : 'Sign Up'}
+              {isLoading ? <CircularProgress /> : t('signUp')}
             </Button>
-            <Typography textAlign={'center'} fontSize='14px' color={theme.palette.neutral.main}>Already Have An Account <Link component={RouterLink} to='/auth/'>Login</Link></Typography>
+            <Typography textAlign={'center'} fontSize='14px' color={theme.palette.neutral.main}>{t('Already Have An Account')} <Link component={RouterLink} to='/auth/'>{t('login')}</Link></Typography>
 
           </Box>
 

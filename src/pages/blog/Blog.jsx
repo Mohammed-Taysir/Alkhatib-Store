@@ -3,6 +3,7 @@ import React from 'react'
 import Widget from './Widget';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 const blogs = [
   {
     id: "1",
@@ -69,6 +70,7 @@ Plarat anaktig vårunat fatiskapet till gena turår, för att antisade i blogga.
 
 function Blog() {
   const isSmallScreen = useMediaQuery('(max-width: 778px)');
+  const {t} = useTranslation();
   const MotionBox = motion(Box);
   const theme = useTheme();
   return (
@@ -98,7 +100,7 @@ function Blog() {
                   <Typography>{blog.shortDescription}</Typography>
                   <Button variant='contained' sx = {{
                     bgcolor: theme.palette.neutral.secondary 
-                  }} component = {Link} to = {`/blog-details/${blog.id}`}>More</Button>
+                  }} component = {Link} to = {`/blog-details/${blog.id}`}>{t('More')}</Button>
                 </CardContent>
 
               </Card>

@@ -14,6 +14,7 @@ import 'swiper/css/pagination';
 // import required modules
 import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 
 const banners = ['./slider-01.jpg', './slider-02.jpg', './slider-03.jpg']
@@ -21,6 +22,8 @@ const banners = ['./slider-01.jpg', './slider-02.jpg', './slider-03.jpg']
 
 function MainBanner() {
   const isSmallScreen = useMediaQuery('(max-width: 770px)');
+
+  const {t} = useTranslation();
   const theme = useTheme();
   return (
     <Box py = {3}>
@@ -51,7 +54,7 @@ function MainBanner() {
                   fontSize: isSmallScreen && "20px"
                 }} align = 'center' fontWeight = 'bold' component={'h1'} variant='h4' color = "#fff">Discover The Perfect Products, Quality, And Style</Typography>
                 <Typography color = {theme.palette.favColor.main}>Alkhatib Store The Joy of Shopping</Typography>
-                <Button component = {Link} to = '/shop/1' variant='contained' size = 'large' sx = {{bgcolor: theme.palette.neutral.secondary, textTransform: 'capitalize'}}>Shop Now</Button>
+                <Button component = {Link} to = '/shop/1' variant='contained' size = 'large' sx = {{bgcolor: theme.palette.neutral.secondary, textTransform: 'capitalize'}}>{t('shopNow')}</Button>
               </Box>
             </SwiperSlide>
           ))

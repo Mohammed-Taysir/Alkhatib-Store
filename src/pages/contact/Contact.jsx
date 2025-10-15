@@ -7,9 +7,12 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import SendIcon from '@mui/icons-material/Send';
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next';
+import i18n from '../../i18n';
 
 function Contact() {
   const theme = useTheme();
+  const {t} = useTranslation();
   
   const isSmallScreen = useMediaQuery('(max-width: 990px)');
   return (
@@ -23,11 +26,11 @@ function Contact() {
         <motion.dev initial = {{opacity: 0, x: -100}} animate = {{opacity: 1, x: 0}} transition = {{duration: 1, ease: 'easeOut'}}>
           <Typography component={'h3'} variant='h5' sx={{
             fontFamily: "Bitcount Single Ink",
-            color: theme.palette.secondary.neutral
+            color: theme.palette.neutral.main
           }}>Alkhatib Store</Typography>
           <Typography color={theme.palette.neutral.main} sx={{ maxWidth: !isSmallScreen ? '550px' : "100%", lineHeight: 1.8, mt: 2 }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur molestiae culpa quam amet accusamus corporis dicta praesentium delectus. Optio deleniti repudiandae inventore mollitia id ea recusandae porro harum expedita neque.</Typography>
 
-          <Typography mt={2} color={theme.palette.neutral.main} fontSize='18px' >Follow Us:</Typography>
+          <Typography mt={2} color={theme.palette.neutral.main} fontSize='18px' >{t('followOn')}</Typography>
           <Stack mt={1} direction={'row'} alignItems={'center'} spacing={2}>
             <Avatar sx={{ bgcolor: theme.palette.neutral.secondary }}><FacebookIcon /></Avatar>
             <Avatar sx={{ bgcolor: theme.palette.neutral.secondary }}><InstagramIcon /></Avatar>
@@ -38,29 +41,29 @@ function Contact() {
 
        <motion.dev initial = {{opacity: 0, x: 100}} animate = {{opacity: 1, x: 0}} transition = {{duration: 1, ease: 'easeOut'}}>
        <Box display={'flex'} flexDirection='column' gap={2} mt={isSmallScreen && 3} >
-          <Typography align='center' sx={{ fontSize: '20px', color: theme.palette.neutral.secondary }}>Get In Touch</Typography>
+          <Typography align='center' sx={{ fontSize: '20px', color: theme.palette.neutral.secondary }}>{t('getInTouch')}</Typography>
           <Stack direction={'row'} alignItems={'center'} spacing={3}>
             <TextField sx={{
               flexGrow: 1, '.MuiInputBase-root': {
                 borderRadius: 4
               }
-            }} variant='outlined' label="First Name" />
+            }} variant='outlined' label= {t('firstName')} />
             <TextField sx={{
               flexGrow: 1, '.MuiInputBase-root': {
                 borderRadius: 4
               }
-            }} variant='outlined' label="Last Name" />
+            }} variant='outlined' label={t("lastName")} />
           </Stack>
           <TextField sx={{
             '.MuiInputBase-root': {
               borderRadius: 4
             }
-          }} variant='outlined' label="Email" fullWidth />
+          }} variant='outlined' label= {t('email')} fullWidth />
           <TextField sx={{
             '.MuiInputBase-root': {
               borderRadius: 4
             }
-          }} variant='outlined' label="Subject" fullWidth />
+          }} variant='outlined' label= {t('subject')} fullWidth />
 
           <TextField
             sx={{
@@ -72,11 +75,13 @@ function Contact() {
                 borderRadius: 4
               }
             }}
-            label="Message"
+            label={t("message")}
           />
 
-          <Button variant="contained" endIcon={<SendIcon />} sx={{ bgcolor: theme.palette.neutral.secondary, py: 1.2, borderRadius: 5 }}>
-            Send
+          <Button variant="contained" endIcon={<SendIcon sx = {{
+            rotate: i18n.dir() == 'rtl' && "-180deg"
+          }} />} sx={{ bgcolor: theme.palette.neutral.secondary, py: 1.2, borderRadius: 5 }}>
+            {t('send')}
           </Button>
 
         </Box>

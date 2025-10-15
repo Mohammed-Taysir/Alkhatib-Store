@@ -17,6 +17,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
 import ProductSkeleton from '../../components/skeleton/ProductSkeleton';
 import { motion } from 'framer-motion';
+import i18n from '../../i18n';
 
 
 
@@ -113,7 +114,7 @@ function Shop() {
                 onChange={handleChange}
                 renderItem={(item) => (
                   <PaginationItem
-                    slots={{ previous: ArrowForwardIcon, next: ArrowBackIcon }}
+                    slots={{ previous: i18n.dir() == 'ltr'? ArrowForwardIcon: ArrowBackIcon, next:i18n.dir() == "ltr"? ArrowBackIcon: ArrowForwardIcon }}
                     {...item}
                   />
                 )}

@@ -13,7 +13,7 @@ function Footer() {
   const isSmallScreen = useMediaQuery('(max-width: 515px)');
   const isMediumScreen = useMediaQuery('(max-width:768px)');
   return (
-    <Box bgcolor={'#2b3445'} >
+    <Box bgcolor={'#2b3445'} component={'footer'} >
       <Container maxWidth='lg' >
         <Box sx={{
           display: 'flex',
@@ -28,7 +28,7 @@ function Footer() {
             <Logo isDark={true} />
           </Box>
           <Stack alignItems={'center'} spacing={1} mb = {2}>
-            <Typography fontWeight={'bold'} color = '#fff'>Follow On: </Typography>
+            <Typography fontWeight={'bold'} color = '#fff'>{t('followOn')}</Typography>
             <Stack direction={'row'} alignItems={'center'} spacing={1}>
             <FacebookIcon sx={{
                   color: '#fff'
@@ -46,7 +46,7 @@ function Footer() {
           <Stack spacing={1} sx = {{
             margin: isSmallScreen && 'auto',
           }}>
-            <Typography color='#fff' align='center' fontWeight='bold'>Payments</Typography>
+            <Typography color='#fff' align='center' fontWeight='bold'>{t("payments")}</Typography>
             <Stack direction='row' alignItems='center' spacing={2}>
               <Box component={'img'} src="/payment.png" alt="" width={40} />
               <Box component={'img'} src="/payment2.png" alt="" width={40} />
@@ -57,7 +57,7 @@ function Footer() {
           </Stack>
         </Box>
 
-        <Typography mt = {1.2} align = 'center' color='#fff'>&copy;{date.getFullYear()} <span style = {{textTransform: 'uppercase'}}>Alkhatib Store</span> | All Rights Reserved | Designed By Eng. Mohammed Taysir</Typography>
+        <Typography mt = {1.2} align = 'center' color='#fff'>&copy;{date.getFullYear()} {t('footerMark')}</Typography>
 
       </Container>
     </Box>

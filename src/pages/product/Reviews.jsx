@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import AxiosUserInstance from '../../api/AxiosUserInstance';
 import { toast, Zoom } from 'react-toastify';
 import { useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 
 
 
@@ -23,6 +24,7 @@ function Reviews({ product, isLoading }) {
   const [comment, setComment] = useState("");
   const theme = useTheme();
   const navigate = useNavigate();
+  const {t} = useTranslation();
   const handleReview = async () => {
     if (!isLoggedin) {
       navigate('/auth/');
@@ -64,7 +66,7 @@ function Reviews({ product, isLoading }) {
   }
   return (
     <Box >
-      {!isLoading?<Typography fontWeight='bold' fontSize='1.4rem'>{product?.reviews.length} {product?.reviews.length > 1 || product?.reviews.length == 0 ? "Reviews" : "Review"} for {product.name}</Typography>: <Skeleton variant ={'text'} />}
+      {!isLoading?<Typography fontWeight='bold' fontSize='1.4rem'>{product?.reviews.length} {product?.reviews.length > 1 || product?.reviews.length == 0 ? t('reviews') : t("review")} for {product.name}</Typography>: <Skeleton variant ={'text'} />}
       <Stack>
         {isLoading? <Box height = {'250px'} display={'flex'} justifyContent={'center'} alignItems = {'center'}>
           <CircularProgress />
@@ -81,9 +83,9 @@ function Reviews({ product, isLoading }) {
       </Stack>
 
       <Box pt={4} display={'flex'} flexDirection={'column'} gap={1.3}>
-        <Typography fontSize="1.4rem" fontWeight='bold'>Add A Review</Typography>
+        <Typography fontSize="1.4rem" fontWeight='bold'>{t('addAReview')}</Typography>
         <Box display={'flex'} flexDirection={'column'} gap={0.5} py={2}>
-          <Typography>Your Rating*</Typography>
+          <Typography>{t('yourRating')}*</Typography>
           <Rating
             name="simple-controlled"
             value={customRate}
@@ -97,7 +99,7 @@ function Reviews({ product, isLoading }) {
         <Box>
           <TextField value={comment} onChange={(e) => {
             setComment(e.target.value)
-          }} fullWidth label="review" height='250px' sx={{
+          }} fullWidth label={t("review")} height='250px' sx={{
             '.MuiInputBase-input': {
               height: '150px',
 
@@ -112,7 +114,7 @@ function Reviews({ product, isLoading }) {
           py: 2,
           fontWeight: 'bold',
           borderRadius: 6
-        }}>{isLoggedin ? 'Add Review' : 'Login/Register to add review'}</Button>
+        }}>{isLoggedin ? t('addReview') : t('loginRegisterToAddReview')}</Button>
       </Box>
 
     </Box>

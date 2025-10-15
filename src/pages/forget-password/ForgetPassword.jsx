@@ -10,9 +10,12 @@ import { Bounce, toast } from 'react-toastify';
 import SendIcon from '@mui/icons-material/Send';
 import ForgetSchema from '../../validations/ForgetSchema';
 import AxiosInstance from '../../api/AxiosInstance';
+import { useTranslation } from 'react-i18next';
+import i18n from '../../i18n';
 
 function ForgetPassword() {
     const theme = useTheme();
+    const {t} = useTranslation();
 
     const [isLoading, setIsLoading] = useState(false);
     const [serverError, setServerError] = useState('');
@@ -46,8 +49,8 @@ function ForgetPassword() {
             <Card sx={{ width: { xs: '100%', sm: 450 }, borderRadius: 6 }}>
                 <CardContent>
                     <Box>
-                        <Typography textAlign={'center'} variant='h6' color={theme.palette.text.primary}>Forget Password</Typography>
-                        <Typography textAlign='center' mt={2}  fontSize = '14px'>Enter Your Email To Recive The Reset Code</Typography>
+                        <Typography textAlign={'center'} variant='h6' color={theme.palette.text.primary}>{t("forgetPassword")}</Typography>
+                        <Typography textAlign='center' mt={2}  fontSize = '14px'>{t("enterEmailResetCode")}</Typography>
                     </Box>
                     <Box p={3} display={'flex'} flexDirection={'column'} gap={3} sx={{
                         '.MuiBox-root': {
@@ -58,7 +61,7 @@ function ForgetPassword() {
                     }}>
 
 
-                        <TextField {...register("email")} variant='outlined' label='Email' sx={{
+                        <TextField {...register("email")} variant='outlined' label={t('email')} sx={{
                             width: `100%`, borderRadius: 5,
                             '.MuiInputBase-root': {
                                 borderRadius: 2
@@ -69,11 +72,13 @@ function ForgetPassword() {
 
 
                         {serverError && (<Typography color='error'>{serverError}</Typography>)}
-                        <Button variant="contained" endIcon={<SendIcon />} size = 'large' sx = {{
+                        <Button variant="contained" endIcon={<SendIcon sx = {{
+                            rotate: i18n.dir() === 'rtl' && "-180deg"
+                        }} />} size = 'large' sx = {{
                             bgcolor: theme.palette.neutral.secondary
                         }} disabled = {isLoading} type = 'submit'>
                             {
-                                isLoading? <CircularProgress />: 'Send'
+                                isLoading? <CircularProgress />: t('send')
                             }
                         </Button>
 

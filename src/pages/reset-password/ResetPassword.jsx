@@ -10,6 +10,8 @@ import axios from 'axios';
 import { Bounce, toast } from 'react-toastify';
 import SendIcon from '@mui/icons-material/Send';
 import ResetSchema from '../../validations/ResetSchema';
+import { useTranslation } from 'react-i18next';
+import i18n from '../../i18n';
 
 
 function ResetPassword() {
@@ -17,6 +19,7 @@ function ResetPassword() {
     const [isVisible, setIsVisible] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [serverError, setServerError] = useState('');
+    const {t} = useTranslation();
 
     const navigate = useNavigate();
 
@@ -56,8 +59,8 @@ function ResetPassword() {
             <Card sx={{ width: { xs: '100%', sm: 450 }, borderRadius: 6 }}>
                 <CardContent>
                     <Box>
-                        <Typography textAlign={'center'} variant='h6' color={theme.palette.text.primary}>Reset Your Password</Typography>
-                        <Typography textAlign='center' mt={2} fontSize='14px'>Enter Your Email Reset Your Password</Typography>
+                        <Typography textAlign={'center'} variant='h6' color={theme.palette.text.primary}>{t("resetPasswordTitle")}</Typography>
+                        <Typography textAlign='center' mt={2} fontSize='14px'>{t("resetPasswordSubtitle")}</Typography>
                     </Box>
                     <Box p={3} display={'flex'} flexDirection={'column'} gap={3} sx={{
                         '.MuiBox-root': {
@@ -68,7 +71,7 @@ function ResetPassword() {
                     }}>
 
 
-                        <TextField {...register("email")} variant='outlined' label='Email' sx={{
+                        <TextField {...register("email")} variant='outlined' label={t('email')} sx={{
                             width: `100%`, borderRadius: 5,
                             '.MuiInputBase-root': {
                                 borderRadius: 2
@@ -76,7 +79,7 @@ function ResetPassword() {
                         }}
                             error={errors.email}
                             helperText={errors.email?.message} />
-                        <TextField {...register("code")} variant='outlined' label='Code' sx={{
+                        <TextField {...register("code")} variant='outlined' label={t('codeLabel')} sx={{
                             width: `100%`, borderRadius: 5,
                             '.MuiInputBase-root': {
                                 borderRadius: 2
@@ -85,7 +88,7 @@ function ResetPassword() {
                             error={errors.code}
                             helperText={errors.code?.message} />
                         <Box position={'relative'}>
-                            <TextField {...register("newPassword")} variant='outlined' label='New Password' sx={{
+                            <TextField {...register("newPassword")} variant='outlined' label={t("newPasswordLabel")} sx={{
                                 width: `100%`, borderRadius: 5,
                                 '.MuiInputBase-root': {
                                     borderRadius: 2
@@ -110,11 +113,13 @@ function ResetPassword() {
 
 
                         {serverError && (<Typography color='error'>{serverError}</Typography>)}
-                        <Button variant="contained" endIcon={<SendIcon />} size='large' sx={{
+                        <Button variant="contained" endIcon={<SendIcon sx = {{
+                            rotate: i18n.dir() ==='rtl' && "-180deg"
+                        }} />} size='large' sx={{
                             bgcolor: theme.palette.neutral.secondary
                         }} disabled={isLoading} type='submit'>
                             {
-                                isLoading ? <CircularProgress /> : 'Send'
+                                isLoading ? <CircularProgress /> : t('send')
                             }
                         </Button>
 

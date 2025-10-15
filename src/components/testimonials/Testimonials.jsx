@@ -8,6 +8,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
+import { useTranslation } from 'react-i18next';
 
 
 
@@ -58,17 +59,18 @@ const testimonials = [
 
 
 function Testimonials() {
+    const {t} = useTranslation();
     const theme = useTheme();
     return (
         <MotionedSection  >
-            <Box height={'100vh'} my={7}>
-                <Box width={'calc(100% - 20px)'} height={'calc(100% - 20px)'} bgcolor={'#fff'} borderRadius={6} boxShadow={'0 2px 15px rgb(0 0 0 / 10%)'} p={3} >
+            <Box height={'100vh'} my={7} pt = {3}>
+                <Box width={'calc(100% - 20px)'} height={'calc(100% - 20px)'} bgcolor={'#fff'} borderRadius={6} boxShadow={'0 2px 15px rgb(0 0 0 / 10%)'} p={3} pt = {5} >
                     <Box sx={{ textAlign: 'center' }} >
-                        <MainTitle sectionTitle={'What Our Customers Are Saying...'} />
+                        <MainTitle sectionTitle={t('testiTitle')} />
                     </Box>
 
                     <Box height={'calc(100% - 48.5px)'} display={'flex'} alignItems={'center'} justifyContent={'center'}>
-                        <Swiper>
+                        <Swiper className="mySwiper">
 
                             {testimonials.map(testi => <SwiperSlide key={testi.id} style = {{
                                 display:'flex',

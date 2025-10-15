@@ -85,7 +85,7 @@ function BottomBar() {
 
           <Stack direction = 'row'>
             <CartIcon />
-            <IconButton p = {1}>
+            {/* <IconButton p = {1}>
               <FavoriteBorderOutlinedIcon  sx = {{
                 color: theme.palette.neutral.main,
                 fontSize: '30px',
@@ -93,7 +93,7 @@ function BottomBar() {
                   color: theme.palette.primary.main
                 }
               }} />
-            </IconButton>
+            </IconButton> */}
 
 
           </Stack>

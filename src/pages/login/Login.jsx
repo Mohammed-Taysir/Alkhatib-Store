@@ -10,10 +10,12 @@ import LoginSchema from '../../validations/LoginSchema';
 import { LoginContext } from '../../context/LoginContext';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 function Login() {
   const theme = useTheme();
-  
+  const {t} = useTranslation();
   const [isLoading, setIsLoading] = useState(false);
   const [serverError, setServerError] = useState('');
 
@@ -53,7 +55,7 @@ function Login() {
       <Card sx={{ width: { xs: '100%', sm: 450 }, borderRadius: 6 }}>
         <CardContent>
           <Box>
-            <Typography textAlign={'center'} variant='h6' color={theme.palette.text.primary}>Login</Typography>
+            <Typography textAlign={'center'} variant='h6' color={theme.palette.text.primary}>{t('login')}</Typography>
           </Box>
           <Box p={3} display={'flex'} flexDirection={'column'} gap={3} sx={{
             '.MuiBox-root': {
@@ -64,7 +66,7 @@ function Login() {
           }}>
 
 
-            <TextField {...register("email")} variant='outlined' label='Email' sx={{
+            <TextField {...register("email")} variant='outlined' label={t('email')} sx={{
               width: `100%`, borderRadius: 5,
               '.MuiInputBase-root': {
                 borderRadius: 2
@@ -74,7 +76,7 @@ function Login() {
               helperText={errors.email?.message} />
 
             <Box position={'relative'}>
-              <TextField {...register("password")} type= {isVisible? 'text': 'password'} variant='outlined' label='Password' sx={{
+              <TextField {...register("password")} type= {isVisible? 'text': 'password'} variant='outlined' label={t('password')} sx={{
                 width: `100%`, borderRadius: 5,
                 '.MuiInputBase-root': {
                   borderRadius: 2
@@ -99,16 +101,16 @@ function Login() {
             <Button variant='contained' size='large' type='submit' sx={{
               bgcolor: theme.palette.neutral.secondary
             }} disabled={isLoading} >
-              {isLoading ? <CircularProgress /> : 'Login'}
+              {isLoading ? <CircularProgress /> : t('login')}
             </Button>
             <Box sx={{
               p: '10px',
               bgcolor: theme.palette.favColor.main,
               borderRadius: "4px"
             }}>
-              <Typography textAlign={'center'} fontSize='14px' color={theme.palette.neutral.main}>Dont Have An Account?  <Link component={RouterLink} to='/auth/register'>Sign Up</Link></Typography>
+              <Typography textAlign={'center'} fontSize='14px' color={theme.palette.neutral.main}>{t('dontHaveAnAccount')}  <Link component={RouterLink} to='/auth/register'>{t('signUp')}</Link></Typography>
             </Box>
-            <Typography textAlign={'center'} fontSize='14px' color={theme.palette.neutral.main}>Forget Password? <Link component={RouterLink} to='/auth/forget'>Forget password </Link></Typography>
+            <Typography textAlign={'center'} fontSize='14px' color={theme.palette.neutral.main}>{t('forgetPassword')}? <Link component={RouterLink} to='/auth/forget'>{t('forgetPassword')} </Link></Typography>
 
           </Box>
 

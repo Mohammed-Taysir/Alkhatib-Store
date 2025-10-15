@@ -4,11 +4,13 @@ import { useState } from 'react'
 import useFetch from '../../custom-hook/useFetch';
 import Slider from '@mui/material/Slider';
 import FormControl from '@mui/material/FormControl';
+import { useTranslation } from 'react-i18next';
 
 function Side({products, onFilter, isLoading}) {
     const isSmallScreen = useMediaQuery('(max-width: 900px)');
     const [category, setCategory] = useState('All');
     const [value, setValue] = useState([1000, 0]);
+    const {t} = useTranslation();
     const loadingArray = Array.from({'length': 10});
 
     const handleChange = (event, newValue) => {
@@ -55,7 +57,7 @@ function Side({products, onFilter, isLoading}) {
                     width: '100%',
                     textAlign: 'center'
 
-                }}>Categories</FormLabel>
+                }}>{t('Categories')}</FormLabel>
 
                 <RadioGroup
                     aria-labelledby="demo-radio-buttons-group-label"
@@ -112,7 +114,7 @@ function Side({products, onFilter, isLoading}) {
                     textAlign: 'center',
                     borderBottom: `1px solid ${theme.palette.neutral.main}`,
                     pb: 2
-                }}>Filter</Typography>
+                }}>{t('filter')}</Typography>
 
                 <Stack mt={2} direction='row' alignItems='center' spacing={2}>
                     <TextField disabled value={value[0]} sx={{
@@ -194,7 +196,7 @@ function Side({products, onFilter, isLoading}) {
                     bgcolor: theme.palette.neutral.main
                 }} onClick={() => {
                     filterByPrice()
-                }}>Apply Filter</Button>
+                }}>{t('applyFilter')}</Button>
             </Stack>
 
 

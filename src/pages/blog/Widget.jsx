@@ -4,13 +4,15 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import { useTranslation } from 'react-i18next';
 
 function Widget({ blogs }) {
     const theme = useTheme();
+    const {t} = useTranslation();
     return (
         <Box component={'aside'}>
             <Box>
-                <Typography fontWeight='bold'>Post Widget</Typography>
+                <Typography fontWeight='bold'>{t('postWidget')}</Typography>
                 <Stack spacing={3} py={3}>
                     {
                         blogs.map(blog => (
@@ -33,7 +35,7 @@ function Widget({ blogs }) {
                 </Stack>
             </Box>
             <Box>
-                <Typography fontWeight={'bold'}>Social Media Widget</Typography>
+                <Typography fontWeight={'bold'}>{t('socialWidget')}</Typography>
                 <Stack spacing={3} py={3}>
                     <Box display={'flex'} gap = {2} alignItems={'center'} bgcolor={theme.palette.favColor.main} px={2} py={1} borderRadius={8}>
                         <Avatar sx={{ bgcolor: theme.palette.neutral.secondary }}><FacebookIcon /></Avatar>
@@ -43,7 +45,7 @@ function Widget({ blogs }) {
                                 ":hover": {
                                     cursor: 'pointer'
                                 }
-                            }}>Follow</Typography>
+                            }}>{t('Follow')}</Typography>
                         </Box>
                     </Box>
                     <Box display={'flex'} gap = {2} alignItems={'center'} bgcolor={theme.palette.favColor.main} px={2} py={1} borderRadius={8}>
@@ -54,7 +56,7 @@ function Widget({ blogs }) {
                                 ":hover": {
                                     cursor: 'pointer'
                                 }
-                            }}>Follow</Typography>
+                            }}>{t('Follow')}</Typography>
                         </Box>
                     </Box>
                     <Box display={'flex'} gap = {2} alignItems={'center'} bgcolor={theme.palette.favColor.main} px={2} py={1} borderRadius={8}>
@@ -65,7 +67,7 @@ function Widget({ blogs }) {
                                 ":hover": {
                                     cursor: 'pointer'
                                 }
-                            }}>Follow</Typography>
+                            }}>{t('Follow')}</Typography>
                         </Box>
                     </Box>
                     <Box display={'flex'} gap = {2} alignItems={'center'} bgcolor={theme.palette.favColor.main} px={2} py={1} borderRadius={8}>
@@ -76,7 +78,7 @@ function Widget({ blogs }) {
                                 ":hover": {
                                     cursor: 'pointer'
                                 }
-                            }}>Follow</Typography>
+                            }}>{t('Follow')}</Typography>
                         </Box>
                     </Box>
 

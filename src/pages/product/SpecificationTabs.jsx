@@ -14,6 +14,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Reviews from './Reviews';
+import { useTranslation } from 'react-i18next';
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -45,6 +46,7 @@ function a11yProps(index) {
 }
 
 function SpecificationTabs({ product, isLoading }) {
+  const {t} = useTranslation();
   const [value, setValue] = React.useState(0);
 
   console.log(product);
@@ -57,9 +59,9 @@ function SpecificationTabs({ product, isLoading }) {
     <Box sx={{ width: '100%', py: 4 }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="Description" {...a11yProps(0)} />
+          <Tab label= {t('description')} {...a11yProps(0)} />
         
-          <Tab label="Reviews" {...a11yProps(1)} />
+          <Tab label= {t('reviews')} {...a11yProps(1)} />
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>

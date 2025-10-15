@@ -3,9 +3,12 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import MotionedSection from '../motioned-section/MotionedSection';
 import { motion } from 'framer-motion';
+import i18n from '../../i18n';
+import { useTranslation } from 'react-i18next';
 
 function BannerSection({ text, subText, img }) {
     const isSmallScreen = useMediaQuery('(max-width: 778px)');
+    const {t} = useTranslation();
     const theme = useTheme();
     const TextMotion = motion(Box);
     return (
@@ -34,12 +37,14 @@ function BannerSection({ text, subText, img }) {
                 flexDirection: 'column',
                 alignItems: 'center',
                 gap: 2,
+
+                
                
 
  
                 height: 'fit-content'
                 
-            }} initial = {{x: 100, opacity: 0}}  whileInView={{opacity: 1, x: 0, transition: {
+                }} initial = {{right: -100, opacity: 0}}  whileInView={{opacity: 1, right: 5, transition: {
                 duration: 1.5
             }}}  >
 
@@ -62,7 +67,7 @@ function BannerSection({ text, subText, img }) {
                 px: 4,
                 borderRadius: 15,
 
-               }} component = {Link} to = '/shop/1'>Discover Now</Button>
+               }} component = {Link} to = '/shop/1'>{t('discoverNow')}</Button>
                
             </TextMotion>
 

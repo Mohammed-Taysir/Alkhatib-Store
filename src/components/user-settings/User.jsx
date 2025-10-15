@@ -6,6 +6,8 @@ import UserAvatar from './UserAvatar';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { Link as RouterLink } from 'react-router-dom';
+import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 
 function User() {
@@ -13,6 +15,7 @@ function User() {
   const theme = useTheme();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const {t} = useTranslation();
   const handleLogout = () => {
     localStorage.removeItem('userToken');
     setIsLoggedin(false);
@@ -73,12 +76,12 @@ function User() {
                 <MenuItem onClick={handleClose}><Link component={RouterLink} to='/profile' sx={{
                   color: theme.palette.text.primary,
                   textDecoration: 'none',
-                }}>Profile</Link></MenuItem>,
-                <MenuItem onClick={handleClose}>Settings</MenuItem>,
+                }}>{t("profile")}</Link></MenuItem>,
+                <MenuItem onClick={handleClose}>{t("settings")}</MenuItem>,
                 <MenuItem onClick={() => {
                   handleClose();
                   handleLogout()
-                }}>Logout</MenuItem>
+                }}>{t("logout")}</MenuItem>
               ]
          
 
@@ -90,12 +93,12 @@ function User() {
                   <Link component={RouterLink} sx={{
                     color: theme.palette.text.primary,
                     textDecoration: 'none'
-                  }} to='/auth/register'>Sign up</Link></MenuItem>,
+                  }} to='/auth/register'>{t('signUp')}</Link></MenuItem>,
                 <MenuItem onClick={handleClose}>
                   <Link component={RouterLink} sx={{
                     color: theme.palette.text.primary,
                     textDecoration: 'none'
-                  }} to='/auth/'>Sign in</Link>
+                  }} to='/auth/'>{t('signIn')}</Link>
                 </MenuItem>
               ]
             
